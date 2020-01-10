@@ -8,16 +8,28 @@ const headers = {
 }
 
 const getCurrentUser = () => {
-    // console.log("%cCalled API", "color:red;")
-    // console.log(headers)
     return fetch(`${url}/current_user`, {
         method: "GET",
         headers
     }).then(res => res.json())
 }
 
+const handleSignUp = (data) => {
+    return fetch('http://localhost:3001/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify({user: data})
+    })
+}
+
 export const api = {
-        auth: {
-            getCurrentUser
-        }
+    auth: {
+        getCurrentUser,
+    },
+    rails: {
+        handleSignUp,
+    }
 }

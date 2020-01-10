@@ -1,10 +1,22 @@
 import React from 'react';
 
-const LogIn = () => {
+class LogIn extends React.Component {
 
-    return(
-        <h1>Treklister Login</h1>
-    )
+    // constructor(){
+    //     super();
+
+    // }
+    
+    
+    
+    
+    
+    
+    render(){
+        return(
+            <h1>Treklister Login</h1>
+        )
+    }
 }
 
 export default LogIn;
