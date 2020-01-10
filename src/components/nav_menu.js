@@ -24,6 +24,38 @@ class NavMenu extends Component {
           Home
         </Menu.Item>
 
+        {this.props.currUser !== null ?
+        <>
+        <Menu.Item
+          as={ Link } to='/new/trip'
+          name='newtrip'
+          active={activeItem === 'newtrip'}
+          onClick={this.handleItemClick}
+        >
+          New Trip
+        </Menu.Item>
+
+        <Menu.Item
+          as={ Link } to='/user/trips'
+          name='trips'
+          active={activeItem === 'trips'}
+          onClick={this.handleItemClick}
+        >
+          {this.props.currUser.first_name}'s Trips
+        </Menu.Item>
+        
+        <Menu.Item
+          as={ Link } to='/user/account'
+          name='account'
+          active={activeItem === 'account'}
+          onClick={this.handleItemClick}
+        >
+          {this.props.currUser.first_name}'s Account
+        </Menu.Item>
+
+        </>
+        :
+
         <Menu.Item
           as={ Link } to='/signup'
           name='signup'
@@ -32,14 +64,16 @@ class NavMenu extends Component {
         >
           Sign Up
         </Menu.Item>
-
-
+        }
+      
         {this.props.currUser !== null ? 
         <Menu.Item 
           position='right'
           name='logout'
           active={activeItem === 'logout'}
-          onClick={() => {this.props.handleLogout()}}
+          onClick={() => {
+            this.props.handleLogout();
+          }}
         >
           Logout
         </Menu.Item>
