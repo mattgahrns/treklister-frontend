@@ -15,7 +15,7 @@ const getCurrentUser = () => {
 }
 
 const handleSignUp = (data) => {
-    return fetch('http://localhost:3001/signup', {
+    return fetch(`${url}/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,13 +26,21 @@ const handleSignUp = (data) => {
 }
 
 const handleLogin = (data) => {
-    return fetch('http://localhost:3001/login', {
+    return fetch(`${url}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
         body: JSON.stringify({user: data})
+    })
+}
+
+const newTrip = (data, userData) => {
+    return fetch(`${url}/users/${userData.id}/new/trip`,{
+        method: 'POST',
+        headers,
+        body: JSON.stringify({trip: data})
     })
 }
 
@@ -43,5 +51,6 @@ export const api = {
     },
     rails: {
         handleSignUp,
+        newTrip,
     }
 }

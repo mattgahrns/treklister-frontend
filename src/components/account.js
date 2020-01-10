@@ -28,7 +28,7 @@ class Account extends React.Component {
     render(){
         return(
         <>
-            {this.state.user ? 
+            {this.state.user !== null ? 
             <>
                 <h1>Hello, {this.state.user.first_name}!</h1>
                 <h3>Account Details: </h3>
