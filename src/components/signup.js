@@ -48,7 +48,8 @@ class SignUp extends React.Component {
             <Form onSubmit={this.handleSubmit}>
 
                 <Form.Group unstackable widths='1'>
-                    <Form.Input
+                    <Form.Input 
+                        required
                         label='Username'
                         placeholder='Username'
                         name='username'
@@ -57,13 +58,15 @@ class SignUp extends React.Component {
                 </Form.Group>
 
                 <Form.Group unstackable widths='2'>
-                    <Form.Input
+                    <Form.Input 
+                        required
                         label='First name'
                         placeholder='First name'
                         name='first_name'
                         onChange={this.handleChange}
                     />
                     <Form.Input
+                        required
                         label='Last name'
                         placeholder='Last name'
                         name='last_name'
@@ -73,6 +76,7 @@ class SignUp extends React.Component {
 
                 <Form.Group unstackable widths='2'>
                     <Form.Input
+                        required
                         type='password'
                         label='Password'
                         placeholder='Password'
@@ -80,6 +84,7 @@ class SignUp extends React.Component {
                         onChange={this.handleChange}
                     />
                     <Form.Input
+                        required
                         type='password'
                         label='Confirm password'
                         placeholder='Confirm password'
