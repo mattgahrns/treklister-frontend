@@ -33,6 +33,17 @@ class NavMenu extends Component {
           Sign Up
         </Menu.Item>
 
+
+        {this.props.currUser !== null ? 
+        <Menu.Item 
+          position='right'
+          name='logout'
+          active={activeItem === 'logout'}
+          onClick={() => {this.props.handleLogout()}}
+        >
+          Logout
+        </Menu.Item>
+        :
         <Menu.Item 
           as={ Link } to='/login'
           position='right'
@@ -42,6 +53,8 @@ class NavMenu extends Component {
         >
           Login
         </Menu.Item>
+        }
+        
 
       </Menu>
     )

@@ -21,6 +21,11 @@ class App extends React.Component {
     })
   }
 
+  logout = () => {
+    localStorage.removeItem('token');
+    this.setState({ user: null });
+  }
+
   componentDidMount() {
     if (localStorage.getItem("token") != null)
     api.auth.getCurrentUser().then((data) => {
@@ -39,10 +44,14 @@ class App extends React.Component {
   render(){
     return (
       <Router>
-        <NavMenu handleLogin={this.login}/>
+        <NavMenu 
+        handleLogin={this.login}
+        handleLogout={this.logout}
+        currUser={this.state.user}
+        />
         <Route exact path='/' component={Home}/>
         <Route exact path='/signup' render={props => <SignUp {...props} onLogin={this.login} />}/>
-        <Route exact path='/login' component={LogIn}/>
+        <Route exact path='/login' render={props => <LogIn {...props} onLogin={this.login} />}/>
       </Router>
     );
   }

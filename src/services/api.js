@@ -25,9 +25,21 @@ const handleSignUp = (data) => {
     })
 }
 
+const handleLogin = (data) => {
+    return fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify({user: data})
+    })
+}
+
 export const api = {
     auth: {
         getCurrentUser,
+        handleLogin,
     },
     rails: {
         handleSignUp,
