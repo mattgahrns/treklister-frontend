@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class NavMenu extends Component {
   state = { activeItem: '' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state

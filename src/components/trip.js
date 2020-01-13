@@ -1,6 +1,11 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon } from 'semantic-ui-react';
+import { Form, Icon, Popup } from 'semantic-ui-react';
+
+const popupStyle = {
+    borderRadius: 5,
+    padding: '5px'
+}
 
 class Trip extends React.Component {
     constructor(){
@@ -47,7 +52,22 @@ class Trip extends React.Component {
 
     renderList = (list) => {
         return list.map(item => {
-            return <li key={item.id}>{item.content}</li>
+            return (
+                <div key={item.id}>
+                    <li>
+                        {item.content} 
+                        &nbsp;&nbsp; 
+                        <Popup content='Edit item' style={popupStyle} trigger={
+                            <Icon link bordered name='edit' onClick={() => console.log('edit clicked')} />
+                        } />
+                        &nbsp;
+                        <Popup content='Delete item' style={popupStyle} trigger={
+                            <Icon link bordered name='trash alternate' onClick={() => console.log('delete clicked')} />
+                        } />
+                    </li>
+                    <br/>
+                </div>
+            )
         });
     }
 
