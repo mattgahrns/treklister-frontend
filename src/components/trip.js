@@ -65,14 +65,32 @@ class Trip extends React.Component {
         e.preventDefault();
         api.requests.newListItem(this.state.beforeList[0].id, this.state.beforeFields)
         .then(res => res.json())
-        .then(console.log)
+        .then(json => {
+            let newBeforeItems = this.state.beforeItems;
+            newBeforeItems.push(json);
+            this.setState({
+                beforeItems: newBeforeItems,
+                beforeFields: {
+                    content: ''
+                }
+            });
+        });
     }
 
     handleAfterSubmit = e => {
         e.preventDefault();
         api.requests.newListItem(this.state.afterList[0].id, this.state.afterFields)
         .then(res => res.json())
-        .then(console.log)
+        .then(json => {
+            let newAfterItems = this.state.afterItems;
+            newAfterItems.push(json);
+            this.setState({
+                afterItems: newAfterItems,
+                afterFields: {
+                    content: ''
+                }
+            });
+        });
     }
 
     render(){
@@ -91,12 +109,13 @@ class Trip extends React.Component {
                     <br/>
                     <Form onSubmit={this.handleBeforeSubmit}>
                         <Form.Input
-                            label='New Item'
-                            placeholder="I can't forget..."
+                            label='New item'
+                            placeholder="Type something..."
                             name='content'
+                            value={this.state.beforeFields.content}
                             onChange={this.handleBeforeChange}
                         />
-                        <Form.Button content='Submit' />
+                        <Form.Button content='Add item' />
                     </Form>
 
                     <h1>Before leaving to go home:</h1>
@@ -108,12 +127,13 @@ class Trip extends React.Component {
                     <br/>
                     <Form onSubmit={this.handleAfterSubmit}>
                         <Form.Input
-                            label='New Item'
-                            placeholder="I can't forget..."
+                            label='New item'
+                            placeholder="Type something..."
                             name='content'
+                            value={this.state.afterFields.content}
                             onChange={this.handleAfterChange}
                         />
-                        <Form.Button content='Submit' />
+                        <Form.Button content='Add item' />
                     </Form>
                 </>
             :
