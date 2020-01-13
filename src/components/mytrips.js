@@ -1,5 +1,6 @@
 import React from 'react';
 import { api } from '../services/api';
+import { Link } from 'react-router-dom';
 
 class MyTrips extends React.Component {
 
@@ -27,7 +28,7 @@ class MyTrips extends React.Component {
     }
 
     fetchTrips = () => {
-        api.req.fetchTrips(this.state.user)
+        api.requests.fetchTrips(this.state.user)
         .then(res => res.json())
         .then(json => {
             this.setState({
@@ -38,7 +39,7 @@ class MyTrips extends React.Component {
 
     renderTrips = () => {
         return this.state.trips.map(trip => {
-            return <p key={trip.id}>{trip.name} aaa</p>
+            return <Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link>
         });
     }
 

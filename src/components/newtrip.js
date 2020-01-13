@@ -36,7 +36,7 @@ class NewTrip extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        api.req.newTrip(this.state.fields, this.state.user)
+        api.requests.newTrip(this.state.fields, this.state.user)
         .then(res => res.json())
         .then(console.log);
     }

@@ -51,14 +51,22 @@ const fetchTrips = (userData) => {
     });
 }
 
+const fetchTrip = (tripID) => {
+    return fetch(`${url}/trip/${tripID}`, {
+        method: 'GET',
+        headers
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
         handleLogin,
         handleSignUp
     },
-    req: {
+    requests: {
         newTrip,
         fetchTrips,
+        fetchTrip
     }
 }
