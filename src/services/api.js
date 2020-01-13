@@ -37,20 +37,28 @@ const handleLogin = (data) => {
 }
 
 const newTrip = (data, userData) => {
-    return fetch(`${url}/users/${userData.id}/new/trip`,{
+    return fetch(`${url}/users/${userData.id}/new/trip`, {
         method: 'POST',
         headers,
         body: JSON.stringify({trip: data})
     })
 }
 
+const fetchTrips = (userData) => {
+    return fetch(`${url}/users/${userData.id}/trips`, {
+        method: 'GET',
+        headers
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
         handleLogin,
+        handleSignUp
     },
-    rails: {
-        handleSignUp,
+    req: {
         newTrip,
+        fetchTrips,
     }
 }

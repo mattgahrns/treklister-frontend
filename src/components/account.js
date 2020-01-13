@@ -23,7 +23,7 @@ class Account extends React.Component {
             })
           }
         })
-      }
+    }
 
     render(){
         return(
