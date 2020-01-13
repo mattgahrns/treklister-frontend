@@ -70,7 +70,9 @@ class Trip extends React.Component {
 
     handleAfterSubmit = e => {
         e.preventDefault();
-
+        api.requests.newListItem(this.state.afterList[0].id, this.state.afterFields)
+        .then(res => res.json())
+        .then(console.log)
     }
 
     render(){
