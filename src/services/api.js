@@ -65,6 +65,14 @@ const fetchLists = (tripID) => {
     });
 }
 
+const newListItem = (listID, data) => {
+    return fetch(`${url}/list/${listID}/new/item`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({list_item: data})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -75,6 +83,7 @@ export const api = {
         newTrip,
         fetchTrips,
         fetchTrip,
-        fetchLists
+        fetchLists,
+        newListItem
     }
 }
