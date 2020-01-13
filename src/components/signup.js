@@ -28,7 +28,7 @@ class SignUp extends React.Component {
 
     handleSubmit = () => {
         if(this.state.fields.password === this.state.password2){
-            api.rails.handleSignUp(this.state.fields)
+            api.auth.handleSignUp(this.state.fields)
             .then(res => res.json())
             .then(json => {
                 localStorage.setItem('token', json.jwt);

@@ -37,20 +37,53 @@ const handleLogin = (data) => {
 }
 
 const newTrip = (data, userData) => {
-    return fetch(`${url}/users/${userData.id}/new/trip`,{
+    return fetch(`${url}/users/${userData.id}/new/trip`, {
         method: 'POST',
         headers,
         body: JSON.stringify({trip: data})
     })
 }
 
+const fetchTrips = (userData) => {
+    return fetch(`${url}/users/${userData.id}/trips`, {
+        method: 'GET',
+        headers
+    });
+}
+
+const fetchTrip = (tripID) => {
+    return fetch(`${url}/trip/${tripID}`, {
+        method: 'GET',
+        headers
+    });
+}
+
+const fetchLists = (tripID) => {
+    return fetch(`${url}/trip/${tripID}/lists`, {
+        method: 'GET',
+        headers
+    });
+}
+
+const newListItem = (listID, data) => {
+    return fetch(`${url}/list/${listID}/new/item`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({list_item: data})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
         handleLogin,
+        handleSignUp
     },
-    rails: {
-        handleSignUp,
+    requests: {
         newTrip,
+        fetchTrips,
+        fetchTrip,
+        fetchLists,
+        newListItem
     }
 }

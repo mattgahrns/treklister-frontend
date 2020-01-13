@@ -9,8 +9,24 @@ class NewTrip extends React.Component {
         this.state = {
             fields: {
                 name: ''
-            }
+            },
+            user: null
         }
+    }
+
+    componentDidMount() {
+        if (localStorage.getItem("token") != null)
+        api.auth.getCurrentUser().then((data) => {
+          if (!data.error) {
+            this.setState({
+              user: data
+            })
+          } else {
+            this.setState({
+              user: null
+            })
+          }
+        })
     }
 
     handleChange = e => {
@@ -20,7 +36,7 @@ class NewTrip extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        api.rails.newTrip(this.state.fields, this.props.currUser)
+        api.requests.newTrip(this.state.fields, this.state.user)
         .then(res => res.json())
         .then(console.log);
     }
