@@ -7,8 +7,12 @@ class Trip extends React.Component {
         super();
         this.state = {
             trip: null,
-            beforeItem: '',
-            afterItem: ''
+            beforeItems: null,
+            afterItems: null,
+            fields: {
+                beforeItem: '',
+                afterItem: ''
+            }
         }
     }
 
@@ -20,8 +24,16 @@ class Trip extends React.Component {
         .then(json => {
             this.setState({
                 trip: json
-            })
+            }, () => this.getLists())
         });
+    }
+
+    getLists = () => {
+        api.requests.fetchLists(this.state.trip.id)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+        })
     }
 
     handleChange = e => {
@@ -46,10 +58,10 @@ class Trip extends React.Component {
                     <h5>{this.state.trip.description !== null ? this.state.trip.description : 'No description found.'}</h5>
                     <h1>Before leaving to my destination:</h1>
 
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleBeforeSubmit}>
                         <Form.Input
                             label='New Item'
-                            placeholder="Don't forget to..."
+                            placeholder="I can't forget..."
                             name='beforeItem'
                             onChange={this.handleChange}
                         />
@@ -58,10 +70,10 @@ class Trip extends React.Component {
 
                     <h1>Before leaving to go home:</h1>
 
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleAfterSubmit}>
                         <Form.Input
                             label='New Item'
-                            placeholder="Don't forget to..."
+                            placeholder="I can't forget..."
                             name='afterItem'
                             onChange={this.handleChange}
                         />
