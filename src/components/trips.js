@@ -6,7 +6,7 @@ class Trips extends React.Component {
     constructor(){
         super();
         this.state = {
-            trips: [],
+            trips: null,
             user: null
         }
     }
@@ -17,7 +17,7 @@ class Trips extends React.Component {
           if (!data.error) {
             this.setState({
               user: data
-            })
+            }, () => this.fetchTrips())
           } else {
             this.setState({
               user: null
@@ -29,17 +29,27 @@ class Trips extends React.Component {
     fetchTrips = () => {
         api.req.fetchTrips(this.state.user)
         .then(res => res.json())
-        .then(json => console.log(json.trips));
+        .then(json => {
+            this.setState({
+                trips: json
+            });
+        });
+    }
+
+    renderTrips = () => {
+        return this.state.trips.map(trip => {
+            return <p key={trip.id}>{trip.name} aaa</p>
+        });
     }
 
     render(){
         return(
             <>
                 <h1>Your Trips</h1>
-                {this.state.user !== null ? 
-                    this.fetchTrips()
+                {this.state.trips !== null ? 
+                    this.renderTrips()
                 :
-                    null
+                    <p>Loading...</p>
                 }
             </>
         )
