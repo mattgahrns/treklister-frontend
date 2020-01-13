@@ -5,7 +5,7 @@ import NavMenu from './components/nav_menu';
 import Home from './components/home';
 import SignUp from './components/signup';
 import LogIn from './components/login';
-import Trips from './components/trips';
+import MyTrips from './components/mytrips';
 import Account from './components/account';
 import NewTrip from './components/newtrip';
 
@@ -57,7 +57,7 @@ class App extends React.Component {
         <Route exact path='/signup' render={props => <SignUp {...props} onLogin={this.login} />}/>
         <Route exact path='/login' render={props => <LogIn {...props} onLogin={this.login} />}/>
         <Route exact path='/new/trip' render={props => <NewTrip {...props} />}/>
-        <Route exact path='/user/trips' render={props => <Trips {...props} />}/>
+        <Route exact path='/user/trips' render={props => <MyTrips {...props} />}/>
         <Route exact path='/user/account' render={props => <Account {...props} />}/>
       </Router>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../services/api';
 
-class Trips extends React.Component {
+class MyTrips extends React.Component {
 
     constructor(){
         super();
@@ -56,4 +56,4 @@ class Trips extends React.Component {
     }
 }
 
-export default Trips;
+export default MyTrips;
