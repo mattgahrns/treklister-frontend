@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form } from 'semantic-ui-react';
+import { Form, Icon } from 'semantic-ui-react';
 
 class Trip extends React.Component {
     constructor(){
@@ -104,7 +104,7 @@ class Trip extends React.Component {
                     {this.state.beforeItems !== null ?
                         this.renderList(this.state.beforeItems)
                     :    
-                        <p>Loading...</p>
+                        <Icon loading name='spinner' size='huge'/>
                     }
                     <br/>
                     <Form onSubmit={this.handleBeforeSubmit}>
@@ -122,7 +122,7 @@ class Trip extends React.Component {
                     {this.state.afterItems !== null ?
                         this.renderList(this.state.afterItems)
                     :    
-                        <p>Loading...</p>
+                        <Icon loading name='spinner' size='huge'/>
                     }
                     <br/>
                     <Form onSubmit={this.handleAfterSubmit}>
@@ -137,7 +137,7 @@ class Trip extends React.Component {
                     </Form>
                 </>
             :
-                <p>Loading...</p>
+                <Icon loading name='spinner' size='massive'/>
             }
             
         </>

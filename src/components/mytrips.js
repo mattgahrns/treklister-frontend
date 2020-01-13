@@ -1,6 +1,7 @@
 import React from 'react';
 import { api } from '../services/api';
 import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
 
 class MyTrips extends React.Component {
 
@@ -50,7 +51,7 @@ class MyTrips extends React.Component {
                 {this.state.trips !== null ? 
                     this.renderTrips()
                 :
-                    <p>Loading...</p>
+                    <Icon loading name='spinner' size='massive'/>
                 }
             </>
         )
