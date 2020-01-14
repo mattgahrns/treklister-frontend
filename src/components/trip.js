@@ -73,7 +73,19 @@ class Trip extends React.Component {
 
     handleItemDelete = e => {
         api.requests.deleteListItem(e)
-        .then()
+        .then(res => res.json())
+        .then(json => {
+            // console.log(json);
+            if(json.list.before){
+                this.setState({
+                    beforeItems: json.list_items
+                });
+            } else {
+                this.setState({
+                    afterItems: json.list_items
+                });
+            }
+        });
     }
 
     handleItemEdit = e => {
@@ -128,7 +140,7 @@ class Trip extends React.Component {
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
-                    <h5>{this.state.trip.description !== null ? this.state.trip.description : 'No description found.'}</h5>
+                    <h5>{this.state.trip.description !== null ? 'Description: ' + this.state.trip.description : 'No description found.'}</h5>
                     <h1>Before leaving to my destination:</h1>
                     {this.state.beforeItems !== null ?
                         this.state.beforeItems.length > 0 ?
