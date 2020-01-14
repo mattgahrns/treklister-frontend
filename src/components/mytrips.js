@@ -40,7 +40,7 @@ class MyTrips extends React.Component {
 
     renderTrips = () => {
         return this.state.trips.map(trip => {
-            return <Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link>
+            return <div key={trip.id}><Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
         });
     }
 

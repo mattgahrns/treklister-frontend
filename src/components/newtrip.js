@@ -8,7 +8,8 @@ class NewTrip extends React.Component {
         super();
         this.state = {
             fields: {
-                name: ''
+                name: '',
+                description: ''
             },
             user: null
         }
@@ -37,8 +38,7 @@ class NewTrip extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         api.requests.newTrip(this.state.fields, this.state.user)
-        .then(res => res.json())
-        .then(console.log);
+        .then(this.props.history.push('/user/trips'));
     }
 
     render(){
@@ -59,6 +59,8 @@ class NewTrip extends React.Component {
                     control={TextArea}
                     label='Description (Optional)'
                     placeholder='Say something about this trip...'
+                    name='description'
+                    onChange={this.handleChange}
                 />
 
                 <Form.Button content='Submit' />
