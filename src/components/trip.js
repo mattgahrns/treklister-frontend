@@ -58,17 +58,26 @@ class Trip extends React.Component {
                         {item.content} 
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
-                            <Icon link bordered name='edit' onClick={() => console.log('edit clicked')} />
+                            <Icon link bordered name='edit' onClick={() => this.handleItemEdit()} />
                         } />
                         &nbsp;
                         <Popup content='Delete item' style={popupStyle} trigger={
-                            <Icon link bordered name='trash alternate' onClick={() => console.log('delete clicked')} />
+                            <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
                         } />
                     </li>
                     <br/>
                 </div>
             )
         });
+    }
+
+    handleItemDelete = e => {
+        api.requests.deleteListItem(e)
+        .then()
+    }
+
+    handleItemEdit = e => {
+        console.log('edit clicked');
     }
 
     handleBeforeChange = e => {

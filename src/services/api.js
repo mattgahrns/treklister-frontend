@@ -73,17 +73,25 @@ const newListItem = (listID, data) => {
     });
 }
 
+const deleteListItem = (itemID) => {
+    return fetch(`${url}/item/${itemID}/delete`, {
+        method: 'DELETE',
+        headers
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
         handleLogin,
-        handleSignUp
+        handleSignUp,
     },
     requests: {
         newTrip,
         fetchTrips,
         fetchTrip,
         fetchLists,
-        newListItem
+        newListItem,
+        deleteListItem,
     }
 }
