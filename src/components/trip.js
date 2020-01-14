@@ -1,6 +1,7 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon, Popup } from 'semantic-ui-react';
+import { Form, Icon, Popup, List } from 'semantic-ui-react';
+import ListItemEditForm from './list_item_edit_form';
 
 const popupStyle = {
     borderRadius: 5,
@@ -58,7 +59,7 @@ class Trip extends React.Component {
                         {item.content} 
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
-                            <Icon link bordered name='edit' onClick={() => this.handleItemEdit()} />
+                            <Icon link bordered name='edit' onClick={() => this.handleItemEdit(item.id)} />
                         } />
                         &nbsp;
                         <Popup content='Delete item' style={popupStyle} trigger={
@@ -71,11 +72,10 @@ class Trip extends React.Component {
         });
     }
 
-    handleItemDelete = e => {
-        api.requests.deleteListItem(e)
+    handleItemDelete = itemID => {
+        api.requests.deleteListItem(itemID)
         .then(res => res.json())
         .then(json => {
-            // console.log(json);
             if(json.list.before){
                 this.setState({
                     beforeItems: json.list_items
@@ -88,8 +88,19 @@ class Trip extends React.Component {
         });
     }
 
-    handleItemEdit = e => {
-        console.log('edit clicked');
+    handleItemEdit = itemID => {
+        // console.log(itemID);
+        api.requests.getListItem(itemID)
+        .then(res => res.json())
+        .then(json => {
+            const listItemDiv = document.getElementById(json.id);
+            let child = listItemDiv.lastElementChild;  
+            while (child) { 
+                listItemDiv.removeChild(child); 
+                child = listItemDiv.lastElementChild; 
+            }
+            listItemDiv.appendChild(<ListItemEditForm />)
+        });
     }
 
     handleBeforeChange = e => {

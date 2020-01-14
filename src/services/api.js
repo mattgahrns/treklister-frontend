@@ -80,6 +80,13 @@ const deleteListItem = (itemID) => {
     });
 }
 
+const getListItem = (itemID) => {
+    return fetch(`${url}/item/${itemID}`, {
+        method: 'GET',
+        headers
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -93,5 +100,6 @@ export const api = {
         fetchLists,
         newListItem,
         deleteListItem,
+        getListItem,
     }
 }
