@@ -122,7 +122,10 @@ class Trip extends React.Component {
                     <h5>{this.state.trip.description !== null ? this.state.trip.description : 'No description found.'}</h5>
                     <h1>Before leaving to my destination:</h1>
                     {this.state.beforeItems !== null ?
+                        this.state.beforeItems.length > 0 ?
                         this.renderList(this.state.beforeItems)
+                        :
+                        <p>No items yet, add some below!</p>
                     :    
                         <Icon loading name='spinner' size='huge'/>
                     }
@@ -140,7 +143,10 @@ class Trip extends React.Component {
 
                     <h1>Before leaving to go home:</h1>
                     {this.state.afterItems !== null ?
+                        this.state.afterItems.length > 0 ?
                         this.renderList(this.state.afterItems)
+                        :
+                        <p>No items yet, add some below!</p>
                     :    
                         <Icon loading name='spinner' size='huge'/>
                     }
