@@ -11,7 +11,8 @@ class NewTrip extends React.Component {
                 name: '',
                 description: ''
             },
-            user: null
+            user: null,
+            trip: null
         }
     }
 
@@ -38,7 +39,12 @@ class NewTrip extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         api.requests.newTrip(this.state.fields, this.state.user)
-        .then(this.props.history.push('/user/trips'));
+        .then(res => res.json())
+        .then(json => {
+            this.setState({
+                trip: json
+            }, () => this.props.history.push('/user/trips'))
+        });
     }
 
     render(){
