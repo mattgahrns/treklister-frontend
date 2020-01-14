@@ -87,6 +87,14 @@ const getListItem = (itemID) => {
     });
 }
 
+const updateListItem = (itemID, item) => {
+    return fetch(`${url}/item/${itemID}/edit`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({list_item: item})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -101,5 +109,6 @@ export const api = {
         newListItem,
         deleteListItem,
         getListItem,
+        updateListItem,
     }
 }

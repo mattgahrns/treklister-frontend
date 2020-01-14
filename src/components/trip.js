@@ -1,7 +1,8 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon, Popup, List } from 'semantic-ui-react';
+import { Form, Icon, Popup } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
+import ReactDOM from 'react-dom';
 
 const popupStyle = {
     borderRadius: 5,
@@ -54,7 +55,7 @@ class Trip extends React.Component {
     renderList = (list) => {
         return list.map(item => {
             return (
-                <div key={item.id}>
+                <div key={item.id} id={item.id}>
                     <li>
                         {item.content} 
                         &nbsp;&nbsp; 
@@ -93,13 +94,15 @@ class Trip extends React.Component {
         api.requests.getListItem(itemID)
         .then(res => res.json())
         .then(json => {
-            const listItemDiv = document.getElementById(json.id);
+            // console.log(json);
+            const listItemDiv = document.getElementById(itemID);
             let child = listItemDiv.lastElementChild;  
             while (child) { 
                 listItemDiv.removeChild(child); 
                 child = listItemDiv.lastElementChild; 
             }
-            listItemDiv.appendChild(<ListItemEditForm />)
+            ReactDOM.render(<ListItemEditForm data={json}/>, listItemDiv);
+            
         });
     }
 
