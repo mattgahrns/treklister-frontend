@@ -52,12 +52,22 @@ class Trip extends React.Component {
         });
     }
 
+    handleCheck = (e) => {
+        console.log(e.target.className + ' item clicked');
+        api.requests.checkListItem(e.target.className)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+        })
+    }
+
     renderList = (list) => {
         return list.map(item => {
             return (
                 <div key={item.id} id={item.id}>
                     <li>
-                        {item.content} 
+                        <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                         
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon link bordered name='edit' onClick={() => {
