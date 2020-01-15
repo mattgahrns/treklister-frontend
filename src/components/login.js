@@ -54,7 +54,7 @@ class LogIn extends React.Component {
                         required
                         type='password'
                         label='Password'
-                        placeholder='password'
+                        placeholder='Password'
                         name='password'
                         onChange={this.handleChange}
                     />
