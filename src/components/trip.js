@@ -31,7 +31,6 @@ class Trip extends React.Component {
 
     componentDidMount(){
         const { match: { params } } = this.props;
-        // console.log(params.id)
         api.requests.fetchTrip(params.id)
         .then(res => res.json())
         .then(json => {
@@ -68,7 +67,6 @@ class Trip extends React.Component {
                                     open: true,
                                     item: item,
                                 });
-                                console.log(item.content);
                             }} />
                         } />
                         &nbsp;
@@ -153,7 +151,6 @@ class Trip extends React.Component {
         const { open, size } = this.state
         return(
         <>
-        {console.log('trip rendered')}
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
