@@ -68,6 +68,7 @@ class NavMenu extends Component {
       
         {this.props.currUser !== null ? 
         <Menu.Item 
+          as={ Link } to='/login'
           position='right'
           name='logout'
           active={activeItem === 'logout'}
