@@ -64,10 +64,10 @@ class Trip extends React.Component {
     renderList = (list) => {
         return list.map(item => {
             return (
-                <div key={item.id} id={item.id}>
+                item.isChecked === true ? 
+                    <div key={item.id} id={item.id}>
                     <li>
-                        <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
-                         
+                        <label><input type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon link bordered name='edit' onClick={() => {
@@ -84,6 +84,27 @@ class Trip extends React.Component {
                         } />
                     </li>
                     <br/>
+                </div>
+                :
+                <div key={item.id} id={item.id}>
+                <li>
+                    <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                    &nbsp;&nbsp; 
+                    <Popup content='Edit item' style={popupStyle} trigger={
+                        <Icon link bordered name='edit' onClick={() => {
+                            this.setState({ 
+                                size: 'fullscreen', 
+                                open: true,
+                                item: item,
+                            });
+                        }} />
+                    } />
+                    &nbsp;
+                    <Popup content='Delete item' style={popupStyle} trigger={
+                        <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
+                    } />
+                </li>
+                <br/>
                 </div>
             )
         });
