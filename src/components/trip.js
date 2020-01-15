@@ -2,7 +2,6 @@ import React from 'react';
 import { api } from '../services/api'
 import { Form, Icon, Popup, Modal } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
-import ReactDOM from 'react-dom';
 
 const popupStyle = {
     borderRadius: 5,
