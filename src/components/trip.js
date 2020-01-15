@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon, Popup } from 'semantic-ui-react';
+import { Form, Icon, Popup, Modal } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
 import ReactDOM from 'react-dom';
 
@@ -23,7 +23,9 @@ class Trip extends React.Component {
             },
             afterFields: {
                 content: ''
-            }
+            },
+            open: false,
+            item: null,
         }
     }
 
@@ -60,7 +62,14 @@ class Trip extends React.Component {
                         {item.content} 
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
-                            <Icon link bordered name='edit' onClick={() => this.handleItemEdit(item.id)} />
+                            <Icon link bordered name='edit' onClick={() => {
+                                this.setState({ 
+                                    size: 'fullscreen', 
+                                    open: true,
+                                    item: item,
+                                });
+                                console.log(item.content);
+                            }} />
                         } />
                         &nbsp;
                         <Popup content='Delete item' style={popupStyle} trigger={
@@ -86,23 +95,6 @@ class Trip extends React.Component {
                     afterItems: json.list_items
                 });
             }
-        });
-    }
-
-    handleItemEdit = itemID => {
-        // console.log(itemID);
-        api.requests.getListItem(itemID)
-        .then(res => res.json())
-        .then(json => {
-            // console.log(json);
-            const listItemDiv = document.getElementById(itemID);
-            let child = listItemDiv.lastElementChild;  
-            while (child) { 
-                listItemDiv.removeChild(child); 
-                child = listItemDiv.lastElementChild; 
-            }
-            ReactDOM.render(<ListItemEditForm data={json}/>, listItemDiv);
-            
         });
     }
 
@@ -148,9 +140,20 @@ class Trip extends React.Component {
         });
     }
 
+    state = { open: false }
+
+    close = () => {
+        this.setState({ 
+            open: false,
+        });
+        this.getLists();
+    }
+
     render(){
+        const { open, size } = this.state
         return(
         <>
+        {console.log('trip rendered')}
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
@@ -201,6 +204,15 @@ class Trip extends React.Component {
                 <Icon loading name='spinner' size='massive'/>
             }
             
+            <Modal size={size} open={open} onClose={this.close}>
+                <Modal.Header>Edit item</Modal.Header>
+                <Modal.Content>
+                    <ListItemEditForm data={this.state.item} closeModal={this.close} />
+                </Modal.Content>
+                <Modal.Actions>
+                    
+                </Modal.Actions>
+            </Modal>
         </>
         )
     }

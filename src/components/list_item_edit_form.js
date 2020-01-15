@@ -21,23 +21,22 @@ class ListItemEditForm extends React.Component{
     handleSubmit = (e) => {
         api.requests.updateListItem(this.state.item.id, this.state.fields)
         .then(res => res.json())
-        .then(console.log)
+        .then(json => {
+            this.props.closeModal();
+        });
     }
 
     render(){
         return(
-            <li>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Input 
-                        label='Edit item: '
-                        defaultValue={this.props.data.content}
-                        name='content'
-                        onChange={this.handleChange}
-                    />
-                    <Form.Button content='Submit' />
-                
-                </Form>
-            </li>
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Input 
+                    defaultValue={this.props.data.content}
+                    name='content'
+                    onChange={this.handleChange}
+                />
+                <Form.Button content='Submit' />
+            
+            </Form>
         )
     }
 }
