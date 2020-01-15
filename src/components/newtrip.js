@@ -8,9 +8,11 @@ class NewTrip extends React.Component {
         super();
         this.state = {
             fields: {
-                name: ''
+                name: '',
+                description: ''
             },
-            user: null
+            user: null,
+            trip: null
         }
     }
 
@@ -38,7 +40,11 @@ class NewTrip extends React.Component {
         e.preventDefault();
         api.requests.newTrip(this.state.fields, this.state.user)
         .then(res => res.json())
-        .then(console.log);
+        .then(json => {
+            this.setState({
+                trip: json
+            }, () => this.props.history.push('/user/trips'))
+        });
     }
 
     render(){
@@ -59,6 +65,8 @@ class NewTrip extends React.Component {
                     control={TextArea}
                     label='Description (Optional)'
                     placeholder='Say something about this trip...'
+                    name='description'
+                    onChange={this.handleChange}
                 />
 
                 <Form.Button content='Submit' />

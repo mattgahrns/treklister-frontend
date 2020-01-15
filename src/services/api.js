@@ -73,17 +73,42 @@ const newListItem = (listID, data) => {
     });
 }
 
+const deleteListItem = (itemID) => {
+    return fetch(`${url}/item/${itemID}/delete`, {
+        method: 'DELETE',
+        headers
+    });
+}
+
+const getListItem = (itemID) => {
+    return fetch(`${url}/item/${itemID}`, {
+        method: 'GET',
+        headers
+    });
+}
+
+const updateListItem = (itemID, item) => {
+    return fetch(`${url}/item/${itemID}/edit`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({list_item: item})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
         handleLogin,
-        handleSignUp
+        handleSignUp,
     },
     requests: {
         newTrip,
         fetchTrips,
         fetchTrip,
         fetchLists,
-        newListItem
+        newListItem,
+        deleteListItem,
+        getListItem,
+        updateListItem,
     }
 }

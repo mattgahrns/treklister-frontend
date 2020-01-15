@@ -1,6 +1,7 @@
 import React from 'react';
 import { api } from '../services/api';
 import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
 
 class MyTrips extends React.Component {
 
@@ -39,7 +40,7 @@ class MyTrips extends React.Component {
 
     renderTrips = () => {
         return this.state.trips.map(trip => {
-            return <Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link>
+            return <div key={trip.id}><Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
         });
     }
 
@@ -50,7 +51,7 @@ class MyTrips extends React.Component {
                 {this.state.trips !== null ? 
                     this.renderTrips()
                 :
-                    <p>Loading...</p>
+                    <Icon loading name='spinner' size='massive'/>
                 }
             </>
         )

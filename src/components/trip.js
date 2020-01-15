@@ -1,6 +1,12 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form } from 'semantic-ui-react';
+import { Form, Icon, Popup, Modal } from 'semantic-ui-react';
+import ListItemEditForm from './list_item_edit_form';
+
+const popupStyle = {
+    borderRadius: 5,
+    padding: '5px'
+}
 
 class Trip extends React.Component {
     constructor(){
@@ -16,13 +22,14 @@ class Trip extends React.Component {
             },
             afterFields: {
                 content: ''
-            }
+            },
+            open: false,
+            item: null,
         }
     }
 
     componentDidMount(){
         const { match: { params } } = this.props;
-        // console.log(params.id)
         api.requests.fetchTrip(params.id)
         .then(res => res.json())
         .then(json => {
@@ -47,7 +54,44 @@ class Trip extends React.Component {
 
     renderList = (list) => {
         return list.map(item => {
-            return <li key={item.id}>{item.content}</li>
+            return (
+                <div key={item.id} id={item.id}>
+                    <li>
+                        {item.content} 
+                        &nbsp;&nbsp; 
+                        <Popup content='Edit item' style={popupStyle} trigger={
+                            <Icon link bordered name='edit' onClick={() => {
+                                this.setState({ 
+                                    size: 'fullscreen', 
+                                    open: true,
+                                    item: item,
+                                });
+                            }} />
+                        } />
+                        &nbsp;
+                        <Popup content='Delete item' style={popupStyle} trigger={
+                            <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
+                        } />
+                    </li>
+                    <br/>
+                </div>
+            )
+        });
+    }
+
+    handleItemDelete = itemID => {
+        api.requests.deleteListItem(itemID)
+        .then(res => res.json())
+        .then(json => {
+            if(json.list.before){
+                this.setState({
+                    beforeItems: json.list_items
+                });
+            } else {
+                this.setState({
+                    afterItems: json.list_items
+                });
+            }
         });
     }
 
@@ -93,18 +137,31 @@ class Trip extends React.Component {
         });
     }
 
+    state = { open: false }
+
+    close = () => {
+        this.setState({ 
+            open: false,
+        });
+        this.getLists();
+    }
+
     render(){
+        const { open, size } = this.state
         return(
         <>
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
-                    <h5>{this.state.trip.description !== null ? this.state.trip.description : 'No description found.'}</h5>
+                    <h5>{this.state.trip.description !== null ? 'Description: ' + this.state.trip.description : 'No description found.'}</h5>
                     <h1>Before leaving to my destination:</h1>
                     {this.state.beforeItems !== null ?
+                        this.state.beforeItems.length > 0 ?
                         this.renderList(this.state.beforeItems)
+                        :
+                        <p>No items yet, add some below!</p>
                     :    
-                        <p>Loading...</p>
+                        <Icon loading name='spinner' size='huge'/>
                     }
                     <br/>
                     <Form onSubmit={this.handleBeforeSubmit}>
@@ -120,9 +177,12 @@ class Trip extends React.Component {
 
                     <h1>Before leaving to go home:</h1>
                     {this.state.afterItems !== null ?
+                        this.state.afterItems.length > 0 ?
                         this.renderList(this.state.afterItems)
+                        :
+                        <p>No items yet, add some below!</p>
                     :    
-                        <p>Loading...</p>
+                        <Icon loading name='spinner' size='huge'/>
                     }
                     <br/>
                     <Form onSubmit={this.handleAfterSubmit}>
@@ -137,9 +197,18 @@ class Trip extends React.Component {
                     </Form>
                 </>
             :
-                <p>Loading...</p>
+                <Icon loading name='spinner' size='massive'/>
             }
             
+            <Modal size={size} open={open} onClose={this.close}>
+                <Modal.Header>Edit item</Modal.Header>
+                <Modal.Content>
+                    <ListItemEditForm data={this.state.item} closeModal={this.close} />
+                </Modal.Content>
+                <Modal.Actions>
+                    
+                </Modal.Actions>
+            </Modal>
         </>
         )
     }

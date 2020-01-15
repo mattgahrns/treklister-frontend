@@ -1,5 +1,6 @@
 import React from 'react';
 import { api } from '../services/api';
+import { Icon } from 'semantic-ui-react';
 
 class Account extends React.Component {
 
@@ -36,7 +37,7 @@ class Account extends React.Component {
                 <p>Username: {this.state.user.username}</p>
             </>
             :
-                null
+                <Icon loading name='spinner' size='massive'/>
             }
             
         </>
