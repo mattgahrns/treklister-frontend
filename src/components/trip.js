@@ -114,15 +114,7 @@ class Trip extends React.Component {
         api.requests.deleteListItem(itemID)
         .then(res => res.json())
         .then(json => {
-            if(json.list.before){
-                this.setState({
-                    beforeItems: json.list_items
-                });
-            } else {
-                this.setState({
-                    afterItems: json.list_items
-                });
-            }
+            this.getLists();
         });
     }
 
