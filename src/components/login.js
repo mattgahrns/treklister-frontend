@@ -26,7 +26,7 @@ class LogIn extends React.Component {
             if(!json.error){
                 localStorage.setItem('token', json.jwt);
                 this.props.onLogin(json.user)
-                this.props.history.push('/')
+                this.props.history.push('/user/trips')
             } else {
                 alert('Invalid username or password!');
             }
@@ -41,6 +41,7 @@ class LogIn extends React.Component {
 
                 <Form.Group unstackable widths='1'>
                     <Form.Input
+                        required
                         label='Username'
                         placeholder='Username'
                         name='username'
@@ -50,6 +51,7 @@ class LogIn extends React.Component {
 
                 <Form.Group unstackable widths='1'>
                     <Form.Input
+                        required
                         type='password'
                         label='Password'
                         placeholder='password'
