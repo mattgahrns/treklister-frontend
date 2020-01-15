@@ -25,6 +25,7 @@ class Trip extends React.Component {
             },
             open: false,
             item: null,
+            bgColor: '',
         }
     }
 
@@ -53,11 +54,23 @@ class Trip extends React.Component {
     }
 
     handleCheck = (e) => {
-        console.log(e.target.className + ' item clicked');
+        e.persist();
+        // console.log(e);
         api.requests.checkListItem(e.target.className)
         .then(res => res.json())
         .then(json => {
-            console.log(json);
+            if(json.isChecked){
+                this.setState({bgColor: '#96FF72'})
+                e.target.style.backgroundColor = this.state.bgColor;
+                this.setState({bgColor: ''})
+                // this.getLists();
+            }else{
+                this.setState({bgColor: ''})
+                e.target.style.backgroundColor = this.state.bgColor;
+                this.setState({bgColor: '#96FF72'})
+                // this.getLists();
+            }
+            this.getLists();
         })
     }
 
@@ -67,7 +80,7 @@ class Trip extends React.Component {
                 item.isChecked === true ? 
                     <div key={item.id} id={item.id}>
                     <li>
-                        <label><input type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                        <label style={{backgroundColor: '#96FF72'}}><input type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon link bordered name='edit' onClick={() => {
@@ -173,6 +186,7 @@ class Trip extends React.Component {
         const { open, size } = this.state
         return(
         <>
+            {console.log('comp rendered')}
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
