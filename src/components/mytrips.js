@@ -49,6 +49,9 @@ class MyTrips extends React.Component {
             <>
                 <h1>Your Trips</h1>
                 {this.state.trips !== null ? 
+                    this.renderTrips().length === 0 ? 
+                    <p>You don't have any trips yet!</p>
+                    :
                     this.renderTrips()
                 :
                     <Icon loading name='spinner' size='massive'/>

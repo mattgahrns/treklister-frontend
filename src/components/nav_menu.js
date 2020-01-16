@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class NavMenu extends Component {
-  state = { activeItem: '' }
+  state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -27,7 +27,7 @@ class NavMenu extends Component {
         {this.props.currUser !== null ?
         <>
         <Menu.Item
-          as={ Link } to='/new/trip'
+          as={ Link } to={`/users/${this.props.currUser.id}/new/trip`}
           name='newtrip'
           active={activeItem === 'newtrip'}
           onClick={this.handleItemClick}
@@ -36,7 +36,7 @@ class NavMenu extends Component {
         </Menu.Item>
 
         <Menu.Item
-          as={ Link } to='/user/trips'
+          as={ Link } to={`/users/${this.props.currUser.id}/trips`}
           name='trips'
           active={activeItem === 'trips'}
           onClick={this.handleItemClick}
@@ -45,7 +45,7 @@ class NavMenu extends Component {
         </Menu.Item>
         
         <Menu.Item
-          as={ Link } to='/user/account'
+          as={ Link } to={`/users/${this.props.currUser.id}/account`}
           name='account'
           active={activeItem === 'account'}
           onClick={this.handleItemClick}
