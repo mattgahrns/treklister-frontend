@@ -186,7 +186,7 @@ class Trip extends React.Component {
         const { open, size } = this.state
         return(
         <>
-            {console.log('comp rendered')}
+            {/* {console.log('comp rendered')} */}
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
