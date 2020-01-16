@@ -31,9 +31,13 @@ class SignUp extends React.Component {
             api.auth.handleSignUp(this.state.fields)
             .then(res => res.json())
             .then(json => {
-                localStorage.setItem('token', json.jwt);
-                this.props.onLogin(json.user)
-                this.props.history.push('/')
+                if(!json.error){
+                    localStorage.setItem('token', json.jwt);
+                    this.props.onLogin(json.user)
+                    this.props.history.push('/')
+                }else{
+                    alert(json.error);
+                }
             })
         } else {
            alert('Passwords do not match');
