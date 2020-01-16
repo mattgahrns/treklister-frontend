@@ -95,6 +95,13 @@ const updateListItem = (itemID, item) => {
     });
 }
 
+const checkListItem = (itemID) => {
+    return fetch(`${url}/item/${itemID}/check`, {
+        method: 'PUT',
+        headers
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -110,5 +117,6 @@ export const api = {
         deleteListItem,
         getListItem,
         updateListItem,
+        checkListItem,
     }
 }

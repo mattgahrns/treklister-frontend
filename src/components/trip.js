@@ -25,6 +25,7 @@ class Trip extends React.Component {
             },
             open: false,
             item: null,
+            bgColor: '',
         }
     }
 
@@ -52,12 +53,34 @@ class Trip extends React.Component {
         });
     }
 
+    handleCheck = (e) => {
+        e.persist();
+        // console.log(e);
+        api.requests.checkListItem(e.target.className)
+        .then(res => res.json())
+        .then(json => {
+            if(json.isChecked){
+                this.setState({bgColor: '#96FF72'})
+                e.target.style.backgroundColor = this.state.bgColor;
+                this.setState({bgColor: ''})
+                // this.getLists();
+            }else{
+                this.setState({bgColor: ''})
+                e.target.style.backgroundColor = this.state.bgColor;
+                this.setState({bgColor: '#96FF72'})
+                // this.getLists();
+            }
+            this.getLists();
+        })
+    }
+
     renderList = (list) => {
         return list.map(item => {
             return (
-                <div key={item.id} id={item.id}>
+                item.isChecked === true ? 
+                    <div key={item.id} id={item.id}>
                     <li>
-                        {item.content} 
+                        <label style={{backgroundColor: '#96FF72'}}><input type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon link bordered name='edit' onClick={() => {
@@ -75,6 +98,27 @@ class Trip extends React.Component {
                     </li>
                     <br/>
                 </div>
+                :
+                <div key={item.id} id={item.id}>
+                <li>
+                    <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                    &nbsp;&nbsp; 
+                    <Popup content='Edit item' style={popupStyle} trigger={
+                        <Icon link bordered name='edit' onClick={() => {
+                            this.setState({ 
+                                size: 'fullscreen', 
+                                open: true,
+                                item: item,
+                            });
+                        }} />
+                    } />
+                    &nbsp;
+                    <Popup content='Delete item' style={popupStyle} trigger={
+                        <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
+                    } />
+                </li>
+                <br/>
+                </div>
             )
         });
     }
@@ -83,15 +127,7 @@ class Trip extends React.Component {
         api.requests.deleteListItem(itemID)
         .then(res => res.json())
         .then(json => {
-            if(json.list.before){
-                this.setState({
-                    beforeItems: json.list_items
-                });
-            } else {
-                this.setState({
-                    afterItems: json.list_items
-                });
-            }
+            this.getLists();
         });
     }
 
@@ -150,6 +186,7 @@ class Trip extends React.Component {
         const { open, size } = this.state
         return(
         <>
+            {/* {console.log('comp rendered')} */}
             {this.state.trip !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
