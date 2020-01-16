@@ -46,7 +46,7 @@ const newTrip = (data, userData) => {
 }
 
 const fetchTrips = (userData) => {
-    console.log(userData.id)
+    // console.log(userData.id)
     return fetch(`${URL}/users/${userData.id}/trips`, {
         method: 'GET',
         headers: headers()
@@ -104,6 +104,13 @@ const checkListItem = (itemID) => {
     });
 }
 
+const uncheckAllItems = (listID) => {
+    return fetch(`${URL}/list/${listID}/uncheck/all`, {
+        method: 'PUT',
+        headers: headers()
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -120,5 +127,6 @@ export const api = {
         getListItem,
         updateListItem,
         checkListItem,
+        uncheckAllItems,
     }
 }

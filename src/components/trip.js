@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon, Popup, Modal } from 'semantic-ui-react';
+import { Form, Icon, Popup, Modal, Button } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
 
 const popupStyle = {
@@ -100,6 +100,7 @@ class Trip extends React.Component {
                 </div>
                 :
                 <div key={item.id} id={item.id}>
+                    {undefined}
                 <li>
                     <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                     &nbsp;&nbsp; 
@@ -173,6 +174,30 @@ class Trip extends React.Component {
         });
     }
 
+    handleClearChecks = (e) => {
+        api.requests.uncheckAllItems(e.target.id)
+        .then(res => res.json())
+        .then(json => {
+            if(json.list.before){
+                this.setState({
+                    beforeItems: json.list_items
+                }, () => {
+                    for(let i = 0; i < this.state.beforeItems; i++){
+                        document.querySelector(`.${this.state.beforeItems[i].id}`).click();
+                    }
+                });
+            } else {
+                this.setState({
+                    afterItems: json.list_items
+                }, () => {
+                    for(let i = 0; i < this.state.afterItems; i++){
+                        document.querySelector(`.${this.state.afterItems[i].id}`).click();
+                    }
+                });
+            }
+        })
+    }
+
     state = { open: false }
 
     close = () => {
@@ -186,12 +211,11 @@ class Trip extends React.Component {
         const { open, size } = this.state
         return(
         <>
-            {/* {console.log('comp rendered')} */}
-            {this.state.trip !== null ? 
+            {this.state.trip !== null && this.state.beforeList !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
                     <h5>{this.state.trip.description !== null ? 'Description: ' + this.state.trip.description : 'No description found.'}</h5>
-                    <h1>Before leaving to my destination:</h1>
+                    <h1>Before leaving to my destination: &nbsp;&nbsp; {this.state.beforeList !== null ? <Button id={this.state.beforeList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h1>
                     {this.state.beforeItems !== null ?
                         this.state.beforeItems.length > 0 ?
                         this.renderList(this.state.beforeItems)
@@ -212,7 +236,7 @@ class Trip extends React.Component {
                         <Form.Button content='Add item' />
                     </Form>
 
-                    <h1>Before leaving to go home:</h1>
+                    <h1>Before leaving to go home: &nbsp;&nbsp; {this.state.afterList !== null ? <Button id={this.state.afterList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h1>
                     {this.state.afterItems !== null ?
                         this.state.afterItems.length > 0 ?
                         this.renderList(this.state.afterItems)
