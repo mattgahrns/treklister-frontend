@@ -46,7 +46,6 @@ const newTrip = (data, userData) => {
 }
 
 const fetchTrips = (userData) => {
-    // console.log(userData.id)
     return fetch(`${URL}/users/${userData.id}/trips`, {
         method: 'GET',
         headers: headers()

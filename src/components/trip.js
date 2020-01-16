@@ -55,7 +55,6 @@ class Trip extends React.Component {
 
     handleCheck = (e) => {
         e.persist();
-        // console.log(e);
         api.requests.checkListItem(e.target.className)
         .then(res => res.json())
         .then(json => {
@@ -63,12 +62,10 @@ class Trip extends React.Component {
                 this.setState({bgColor: '#96FF72'})
                 e.target.style.backgroundColor = this.state.bgColor;
                 this.setState({bgColor: ''})
-                // this.getLists();
             }else{
                 this.setState({bgColor: ''})
                 e.target.style.backgroundColor = this.state.bgColor;
                 this.setState({bgColor: '#96FF72'})
-                // this.getLists();
             }
             this.getLists();
         })
