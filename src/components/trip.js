@@ -2,6 +2,7 @@ import React from 'react';
 import { api } from '../services/api'
 import { Form, Icon, Popup, Modal, Button } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
+import TripEditForm from './trip_edit_form';
 
 const popupStyle = {
     borderRadius: 5,
@@ -57,10 +58,10 @@ class Trip extends React.Component {
 
     handleEditOpen = () => this.setState({ editModalOpen: true })
 
-    handleEditClose = (user) => {
+    handleEditClose = (trip) => {
         this.setState({ 
             editModalOpen: false,
-            user: user
+            trip: trip
         });
     }
     
@@ -255,7 +256,7 @@ class Trip extends React.Component {
                     >
                         <Modal.Header>Edit Trip</Modal.Header>
                         <Modal.Content>
-                            {/* <AccountEditForm handleClose={this.handleEditClose} currUser={this.state.user}/> */}
+                            <TripEditForm handleClose={this.handleEditClose} currTrip={this.state.trip}/>
                         </Modal.Content>
                     </Modal>
                     <Modal 

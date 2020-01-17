@@ -140,6 +140,14 @@ const deleteTrip = (tripID) => {
     });
 }
 
+const editTrip = (data, tripID) => {
+    return fetch(`${URL}/trips/${tripID}/edit`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify({trip: data})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -161,5 +169,6 @@ export const api = {
         handleAccountEdit,
         handlePasswordChange,
         deleteTrip,
+        editTrip,
     }
 }
