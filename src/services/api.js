@@ -133,6 +133,21 @@ const handlePasswordChange = (data, userID) => {
     });
 }
 
+const deleteTrip = (tripID) => {
+    return fetch(`${URL}/trips/${tripID}/delete`, {
+        method: 'DELETE',
+        headers: headers()
+    });
+}
+
+const editTrip = (data, tripID) => {
+    return fetch(`${URL}/trips/${tripID}/edit`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify({trip: data})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -153,5 +168,7 @@ export const api = {
         deleteUser,
         handleAccountEdit,
         handlePasswordChange,
+        deleteTrip,
+        editTrip,
     }
 }

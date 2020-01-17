@@ -28,7 +28,7 @@ class Account extends React.Component {
               user: null
             })
           }
-        })
+        });
     }
 
     handleEditOpen = () => this.setState({ editModalOpen: true })
