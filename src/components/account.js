@@ -74,7 +74,7 @@ class Account extends React.Component {
                 >
                     <Modal.Header>Delete Your Account</Modal.Header>
                     <Modal.Content>
-                        <p>Are you sure you want to delete your account</p>
+                        <p>Are you sure you want to delete your account?</p>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button onClick={this.handleClose} negative>No</Button>
