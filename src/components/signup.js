@@ -34,7 +34,7 @@ class SignUp extends React.Component {
                 if(!json.error){
                     localStorage.setItem('token', json.jwt);
                     this.props.onLogin(json.user)
-                    this.props.history.push('/')
+                    this.props.history.push(`/users/${json.user.id}/new/trip`)
                 }else{
                     alert(json.error);
                 }
