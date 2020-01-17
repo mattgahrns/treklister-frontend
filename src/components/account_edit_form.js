@@ -7,9 +7,9 @@ class AccountEditForm extends React.Component{
         super(props);
         this.state = {
             fields: {
-                first_name: '',
-                last_name: '',
-                username: '',
+                first_name: props.currUser.first_name,
+                last_name: props.currUser.last_name,
+                username: props.currUser.username,
             }
         }
     }
@@ -31,8 +31,9 @@ class AccountEditForm extends React.Component{
         api.requests.handleAccountEdit(this.state.fields, this.props.currUser.id)
         .then(res => res.json())
         .then(json => {
-            console.log(json);
-            this.props.handleClose();
+            const newFields = { ...this.state.fields, first_name: json.user.first_name, last_name: json.user.last_name, username: json.user.username };
+            this.setState({ fields: newFields });
+            this.props.handleClose(json.user);
         });
     }
 
@@ -48,6 +49,7 @@ class AccountEditForm extends React.Component{
                         placeholder='Username'
                         name='username'
                         onChange={this.handleChange}
+                        defaultValue={this.props.currUser.username}
                     />
                 </Form.Group>
 
@@ -58,6 +60,7 @@ class AccountEditForm extends React.Component{
                         placeholder='First name'
                         name='first_name'
                         onChange={this.handleChange}
+                        defaultValue={this.props.currUser.first_name}
                     />
                     <Form.Input
                         required
@@ -65,6 +68,7 @@ class AccountEditForm extends React.Component{
                         placeholder='Last name'
                         name='last_name'
                         onChange={this.handleChange}
+                        defaultValue={this.props.currUser.last_name}
                     />
                 </Form.Group>
 

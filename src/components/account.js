@@ -31,8 +31,13 @@ class Account extends React.Component {
 
     handleEditOpen = () => this.setState({ editModalOpen: true })
 
-    handleEditClose = () => this.setState({ editModalOpen: false })
-
+    handleEditClose = (user) => {
+        this.setState({ 
+            editModalOpen: false,
+            user: user
+        });
+    }
+    
     handleDeleteOpen = () => this.setState({ deleteModalOpen: true })
 
     handleDeleteClose = () => this.setState({ deleteModalOpen: false })
