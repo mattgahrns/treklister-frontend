@@ -2,6 +2,7 @@ import React from 'react';
 import { api } from '../services/api';
 import { Icon, Button, Modal } from 'semantic-ui-react';
 import AccountEditForm from './account_edit_form';
+import ChangePasswordForm from './change_password_form'
 
 class Account extends React.Component {
 
@@ -11,6 +12,7 @@ class Account extends React.Component {
             user: null,
             deleteModalOpen: false,
             editModalOpen: false,
+            passwordModalOpen: false,
         }
     }
 
@@ -42,6 +44,10 @@ class Account extends React.Component {
 
     handleDeleteClose = () => this.setState({ deleteModalOpen: false })
 
+    handlePasswordOpen = () => this.setState({ passwordModalOpen: true })
+
+    handlePasswordClose = () => this.setState({ passwordModalOpen: false })
+
     handleEdit = (e) => {
         console.log(e.target.id);
     }
@@ -72,6 +78,16 @@ class Account extends React.Component {
                     <Modal.Header>Edit Account</Modal.Header>
                     <Modal.Content>
                         <AccountEditForm handleClose={this.handleEditClose} currUser={this.state.user}/>
+                    </Modal.Content>
+                </Modal>
+                <Modal 
+                trigger={<Button onClick={this.handlePasswordOpen} id={this.state.user.id} compact>Change Password</Button>}
+                open={this.state.passwordModalOpen}
+                onClose={this.handlePasswordClose}
+                >
+                    <Modal.Header>Change Password</Modal.Header>
+                    <Modal.Content>
+                        <ChangePasswordForm handleClose={this.handlePasswordClose} currUser={this.state.user}/>
                     </Modal.Content>
                 </Modal>
                 <Modal 

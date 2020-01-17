@@ -122,7 +122,15 @@ const handleAccountEdit = (data, userID) => {
         method: 'PUT',
         headers: headers(),
         body: JSON.stringify(data)
-    })
+    });
+}
+
+const handlePasswordChange = (data, userID) => {
+    return fetch(`${URL}/users/${userID}/change/password`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify({user: data})
+    });
 }
 
 export const api = {
@@ -144,5 +152,6 @@ export const api = {
         uncheckAllItems,
         deleteUser,
         handleAccountEdit,
+        handlePasswordChange,
     }
 }

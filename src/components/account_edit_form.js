@@ -19,14 +19,6 @@ class AccountEditForm extends React.Component{
         this.setState({ fields: newFields });
     }
 
-    handleSubmit = (e) => {
-        api.requests.updateListItem(this.state.item.id, this.state.fields)
-        .then(res => res.json())
-        .then(json => {
-            this.props.handleClose();
-        });
-    }
-
     handleSubmit = () => {
         api.requests.handleAccountEdit(this.state.fields, this.props.currUser.id)
         .then(res => res.json())
