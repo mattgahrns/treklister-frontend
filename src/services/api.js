@@ -110,6 +110,13 @@ const uncheckAllItems = (listID) => {
     });
 }
 
+const deleteUser = (userID) => {
+    return fetch(`${URL}/users/${userID}/delete`, {
+        method: 'DELETE',
+        headers: headers()
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -127,5 +134,6 @@ export const api = {
         updateListItem,
         checkListItem,
         uncheckAllItems,
+        deleteUser,
     }
 }
