@@ -77,7 +77,7 @@ class Trip extends React.Component {
                 item.isChecked === true ? 
                     <div key={item.id} id={item.id}>
                     <li>
-                        <label style={{backgroundColor: '#96FF72'}}><input type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                        <label style={{backgroundColor: '#96FF72', cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon link bordered name='edit' onClick={() => {
@@ -99,7 +99,7 @@ class Trip extends React.Component {
                 <div key={item.id} id={item.id}>
                     {undefined}
                 <li>
-                    <label><input type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
+                    <label style={{cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" onClick={(e) => this.handleCheck(e)} className={item.id}/>{item.content}</label>
                     &nbsp;&nbsp; 
                     <Popup content='Edit item' style={popupStyle} trigger={
                         <Icon link bordered name='edit' onClick={() => {

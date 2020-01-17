@@ -110,6 +110,29 @@ const uncheckAllItems = (listID) => {
     });
 }
 
+const deleteUser = (userID) => {
+    return fetch(`${URL}/users/${userID}/delete`, {
+        method: 'DELETE',
+        headers: headers()
+    });
+}
+
+const handleAccountEdit = (data, userID) => {
+    return fetch(`${URL}/users/${userID}/edit`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify(data)
+    });
+}
+
+const handlePasswordChange = (data, userID) => {
+    return fetch(`${URL}/users/${userID}/change/password`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify({user: data})
+    });
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -127,5 +150,8 @@ export const api = {
         updateListItem,
         checkListItem,
         uncheckAllItems,
+        deleteUser,
+        handleAccountEdit,
+        handlePasswordChange,
     }
 }
