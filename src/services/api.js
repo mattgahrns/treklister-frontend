@@ -117,6 +117,14 @@ const deleteUser = (userID) => {
     });
 }
 
+const handleAccountEdit = (data, userID) => {
+    return fetch(`${URL}/users/${userID}/edit`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify(data)
+    })
+}
+
 export const api = {
     auth: {
         getCurrentUser,
@@ -135,5 +143,6 @@ export const api = {
         checkListItem,
         uncheckAllItems,
         deleteUser,
+        handleAccountEdit,
     }
 }

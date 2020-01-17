@@ -1,6 +1,7 @@
 import React from 'react';
 import { api } from '../services/api';
-import { Icon, Button, Modal, Header } from 'semantic-ui-react';
+import { Icon, Button, Modal } from 'semantic-ui-react';
+import AccountEditForm from './account_edit_form';
 
 class Account extends React.Component {
 
@@ -8,7 +9,8 @@ class Account extends React.Component {
         super(props);
         this.state = {
             user: null,
-            modalOpen: false,
+            deleteModalOpen: false,
+            editModalOpen: false,
         }
     }
 
@@ -27,9 +29,13 @@ class Account extends React.Component {
         })
     }
 
-    handleOpen = () => this.setState({ modalOpen: true })
+    handleEditOpen = () => this.setState({ editModalOpen: true })
 
-    handleClose = () => this.setState({ modalOpen: false })
+    handleEditClose = () => this.setState({ editModalOpen: false })
+
+    handleDeleteOpen = () => this.setState({ deleteModalOpen: true })
+
+    handleDeleteClose = () => this.setState({ deleteModalOpen: false })
 
     handleEdit = (e) => {
         console.log(e.target.id);
@@ -51,33 +57,30 @@ class Account extends React.Component {
             <>
                 <h1>Hello, {this.state.user.first_name}!</h1>
                 <h3>Account Details: </h3>
-                <p>Full name: {this.state.user.first_name + ' ' + this.state.user.last_name}</p>
-                <p>Username: {this.state.user.username}</p>
-                <Modal trigger={<Button id={this.state.user.id} compact>Edit Account</Button>}>
-                    <Modal.Header>Select a Photo</Modal.Header>
+                <p><strong>Full name:</strong> {this.state.user.first_name + ' ' + this.state.user.last_name}</p>
+                <p><strong>Username:</strong> {this.state.user.username}</p>
+                <Modal 
+                trigger={<Button onClick={this.handleEditOpen} id={this.state.user.id} compact>Edit Account</Button>}
+                open={this.state.editModalOpen}
+                onClose={this.handleEditClose}
+                >
+                    <Modal.Header>Edit Account</Modal.Header>
                     <Modal.Content>
-                    <Modal.Description>
-                        <Header>Default Profile Image</Header>
-                        <p>
-                        We've found the following gravatar image associated with your e-mail
-                        address.
-                        </p>
-                        <p>Is it okay to use this photo?</p>
-                    </Modal.Description>
+                        <AccountEditForm handleClose={this.handleEditClose} currUser={this.state.user}/>
                     </Modal.Content>
                 </Modal>
                 <Modal 
                 size='mini' 
-                trigger={<Button onClick={this.handleOpen} compact negative>Delete Account</Button>}
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
+                trigger={<Button onClick={this.handleDeleteOpen} compact negative>Delete Account</Button>}
+                open={this.state.deleteModalOpen}
+                onClose={this.handleDeleteClose}
                 >
                     <Modal.Header>Delete Your Account</Modal.Header>
                     <Modal.Content>
                         <p>Are you sure you want to delete your account?</p>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button onClick={this.handleClose} negative>No</Button>
+                        <Button onClick={this.handleDeleteClose} negative>No</Button>
                         <Button
                         id={this.state.user.id}
                         onClick={(e) => this.handleDelete(e)}
