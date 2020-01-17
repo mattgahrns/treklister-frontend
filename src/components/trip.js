@@ -12,6 +12,7 @@ class Trip extends React.Component {
     constructor(){
         super();
         this.state = {
+            user: null,
             trip: null,
             beforeItems: null,
             afterItems: null,
@@ -26,6 +27,8 @@ class Trip extends React.Component {
             open: false,
             item: null,
             bgColor: '',
+            deleteModalOpen: false,
+            editModalOpen: false,
         }
     }
 
@@ -38,7 +41,32 @@ class Trip extends React.Component {
                 trip: json
             }, () => this.getLists())
         });
+        if (localStorage.getItem("token") != null)
+        api.auth.getCurrentUser().then((data) => {
+          if (!data.error) {
+            this.setState({
+              user: data
+            })
+          } else {
+            this.setState({
+              user: null
+            })
+          }
+        });
     }
+
+    handleEditOpen = () => this.setState({ editModalOpen: true })
+
+    handleEditClose = (user) => {
+        this.setState({ 
+            editModalOpen: false,
+            user: user
+        });
+    }
+    
+    handleDeleteOpen = () => this.setState({ deleteModalOpen: true })
+
+    handleDeleteClose = () => this.setState({ deleteModalOpen: false })
 
     getLists = () => {
         api.requests.fetchLists(this.state.trip.id)
@@ -204,15 +232,57 @@ class Trip extends React.Component {
         this.getLists();
     }
 
+    handleDelete = (e) => {
+        api.requests.deleteTrip(e.target.id)
+        .then(res => res.json()
+        .then(json => {
+            if(json.message){
+                this.props.history.push(`/users/${this.state.user.id}/trips`)
+            }
+        }));
+    }
+
     render(){
         const { open, size } = this.state
         return(
         <>
             {this.state.trip !== null && this.state.beforeList !== null ? 
                 <>
+                    <Modal 
+                    trigger={<Button onClick={this.handleEditOpen} id={this.state.user.id} compact>Edit Trip</Button>}
+                    open={this.state.editModalOpen}
+                    onClose={this.handleEditClose}
+                    >
+                        <Modal.Header>Edit Trip</Modal.Header>
+                        <Modal.Content>
+                            {/* <AccountEditForm handleClose={this.handleEditClose} currUser={this.state.user}/> */}
+                        </Modal.Content>
+                    </Modal>
+                    <Modal 
+                    size='mini' 
+                    trigger={<Button onClick={this.handleDeleteOpen} compact negative>Delete Trip</Button>}
+                    open={this.state.deleteModalOpen}
+                    onClose={this.handleDeleteClose}
+                    >
+                        <Modal.Header>Delete This Trip</Modal.Header>
+                        <Modal.Content>
+                            <p>Are you sure you want to delete this trip?</p>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button onClick={this.handleDeleteClose} negative>No</Button>
+                            <Button
+                            id={this.state.trip.id}
+                            onClick={(e) => this.handleDelete(e)}
+                            positive
+                            icon='checkmark'
+                            labelPosition='right'
+                            content='Yes'
+                            />
+                        </Modal.Actions>
+                    </Modal>
                     <h1>{this.state.trip.name}</h1>
                     <h5>{this.state.trip.description !== null ? 'Description: ' + this.state.trip.description : 'No description found.'}</h5>
-                    <h1>Before leaving to my destination: &nbsp;&nbsp; {this.state.beforeList !== null ? <Button id={this.state.beforeList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h1>
+                    <h2>Before leaving to my destination: &nbsp;&nbsp; {this.state.beforeList !== null ? <Button id={this.state.beforeList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
                     {this.state.beforeItems !== null ?
                         this.state.beforeItems.length > 0 ?
                         this.renderList(this.state.beforeItems)
@@ -233,7 +303,7 @@ class Trip extends React.Component {
                         <Form.Button content='Add item' />
                     </Form>
 
-                    <h1>Before leaving to go home: &nbsp;&nbsp; {this.state.afterList !== null ? <Button id={this.state.afterList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h1>
+                    <h2>Before leaving to go home: &nbsp;&nbsp; {this.state.afterList !== null ? <Button id={this.state.afterList[0].id} color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
                     {this.state.afterItems !== null ?
                         this.state.afterItems.length > 0 ?
                         this.renderList(this.state.afterItems)
