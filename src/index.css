@@ -19,6 +19,12 @@ code {
   align-items: center;
 }
 
+hr {
+  margin-top: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
 h1 {
   text-align: center;
 }
@@ -47,10 +53,6 @@ p {
   padding: 1em;
 }
 
-.accountButtons {
-  background-color: '#ebda26';
-}
-
 .loadingIcon {
   display: flex;
 }
@@ -63,4 +65,19 @@ p {
 #newTripForm {
   padding-left: 3em;
   padding-right: 3em;
+}
+
+.lists {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.addItemForms {
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 1em;
+}
+
+.listHeaders {
+  padding-left: 2em;
 }
