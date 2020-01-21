@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+#signUpForm {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+#signUpText {
+  padding-top: 2em;
+}
+
+/* #signUpSubmit {
+  align-items: center;
+} */
+
+#loginForm {
+  padding: 1em;
+}
