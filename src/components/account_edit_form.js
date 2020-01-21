@@ -34,7 +34,7 @@ class AccountEditForm extends React.Component{
         <>
             <Form onSubmit={this.handleSubmit}>
 
-                <Form.Group unstackable widths='1'>
+                <Form.Group unstackable widths='2'>
                     <Form.Input 
                         required
                         label='Username'
@@ -64,7 +64,7 @@ class AccountEditForm extends React.Component{
                     />
                 </Form.Group>
 
-                <Form.Button content='Submit' />
+                <Form.Button color='green' content='Submit' />
                 
             </Form>
         </>

@@ -16,10 +16,15 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 p {
   text-align: center;
   padding-left: 3em;
   padding-right: 3em;
+  font-size: 20px;
 }
 
 #signUpForm {
@@ -37,4 +42,13 @@ p {
 
 #loginForm {
   padding: 1em;
+}
+
+.accountButtons {
+  background-color: '#ebda26';
+}
+
+.loadingIcon {
+  -webkit-align-items: center; 
+  align-items: center;
 }

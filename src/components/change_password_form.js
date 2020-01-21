@@ -59,7 +59,7 @@ class ChangePasswordForm extends React.Component{
                     />
                 </Form.Group>
 
-                <Form.Button content='Submit' />
+                <Form.Button color='green' content='Submit' />
                 
             </Form>
         </>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api';
-import { Icon, Button, Modal } from 'semantic-ui-react';
+import { Icon, Button, Modal, Grid } from 'semantic-ui-react';
 import AccountEditForm from './account_edit_form';
 import ChangePasswordForm from './change_password_form'
 
@@ -70,8 +70,10 @@ class Account extends React.Component {
                 <h3>Account Details: </h3>
                 <p><strong>Full name:</strong> {this.state.user.first_name + ' ' + this.state.user.last_name}</p>
                 <p><strong>Username:</strong> {this.state.user.username}</p>
+                <Grid>
+                <Grid.Column textAlign='center'>
                 <Modal 
-                trigger={<Button onClick={this.handleEditOpen} id={this.state.user.id} compact>Edit Account</Button>}
+                trigger={<Button onClick={this.handleEditOpen} color='yellow' id={this.state.user.id} className='accountButtons' compact>Edit Account</Button>}
                 open={this.state.editModalOpen}
                 onClose={this.handleEditClose}
                 >
@@ -81,7 +83,7 @@ class Account extends React.Component {
                     </Modal.Content>
                 </Modal>
                 <Modal 
-                trigger={<Button onClick={this.handlePasswordOpen} id={this.state.user.id} compact>Change Password</Button>}
+                trigger={<Button onClick={this.handlePasswordOpen} color='yellow' id={this.state.user.id} className='accountButtons' compact>Change Password</Button>}
                 open={this.state.passwordModalOpen}
                 onClose={this.handlePasswordClose}
                 >
@@ -92,7 +94,7 @@ class Account extends React.Component {
                 </Modal>
                 <Modal 
                 size='mini' 
-                trigger={<Button onClick={this.handleDeleteOpen} compact negative>Delete Account</Button>}
+                trigger={<Button onClick={this.handleDeleteOpen} className='accountButtons' compact negative>Delete Account</Button>}
                 open={this.state.deleteModalOpen}
                 onClose={this.handleDeleteClose}
                 >
@@ -112,9 +114,11 @@ class Account extends React.Component {
                         />
                     </Modal.Actions>
                 </Modal>
+                </Grid.Column>
+                </Grid>
             </>
             :
-                <Icon loading name='spinner' size='massive'/>
+                <Icon className='loadingIcon' loading name='spinner' size='massive'/>
             }
             
         </>
