@@ -40,7 +40,7 @@ class MyTrips extends React.Component {
 
     renderTrips = () => {
         return this.state.trips.map(trip => {
-            return <div key={trip.id}><Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
+            return <div key={trip.id}><Link className='tripLinks' to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
         });
     }
 
@@ -48,13 +48,16 @@ class MyTrips extends React.Component {
         return(
             <>
                 <h1>Your Trips</h1>
+                <br/>
                 {this.state.trips !== null ? 
                     this.renderTrips().length === 0 ? 
                     <p>You don't have any trips yet!</p>
                     :
-                    this.renderTrips()
+                    <div className='flex-container'>
+                    {this.renderTrips()}
+                    </div>
                 :
-                    <Icon loading name='spinner' size='massive'/>
+                    <Icon id='loadingIcon' loading name='spinner' size='massive'/>
                 }
             </>
         )
