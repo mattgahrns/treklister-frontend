@@ -59,3 +59,8 @@ p {
   font-size: 20px;
   display: flex;
 }
+
+#newTripForm {
+  padding-left: 3em;
+  padding-right: 3em;
+}

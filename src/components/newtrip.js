@@ -51,7 +51,7 @@ class NewTrip extends React.Component {
         return(
         <>
             <h1>New Trip</h1>
-            <Form onSubmit={this.handleSubmit}>
+            <Form id='newTripForm' onSubmit={this.handleSubmit}>
 
                 <Form.Input 
                     required
@@ -69,7 +69,7 @@ class NewTrip extends React.Component {
                     onChange={this.handleChange}
                 />
 
-                <Form.Button content='Submit' />
+                <Form.Button compact color='green' content='Create Trip' />
             
             </Form>
             
