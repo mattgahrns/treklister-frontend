@@ -81,3 +81,7 @@ p {
 .listHeaders {
   padding-left: 2em;
 }
+
+#tripDescription {
+  padding-bottom: 1em;
+}

@@ -250,7 +250,7 @@ class Trip extends React.Component {
             {this.state.trip !== null && this.state.beforeList !== null ? 
                 <>
                     <h1>{this.state.trip.name}</h1>
-                    <div>{this.state.trip.description !== null && this.state.trip.description !== '' ? <p><strong>Description: </strong>  {this.state.trip.description}</p>: <p>No description found.</p>}</div>
+                    <div id='tripDescription'>{this.state.trip.description !== null && this.state.trip.description !== '' ? <p><strong>Description: </strong>  {this.state.trip.description}</p>: <p>No description found.</p>}</div>
                     <Grid>
                     <Grid.Column textAlign='center'>
                     <Modal 
