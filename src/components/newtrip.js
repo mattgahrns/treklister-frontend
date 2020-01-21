@@ -43,7 +43,7 @@ class NewTrip extends React.Component {
         .then(json => {
             this.setState({
                 trip: json
-            }, () => this.props.history.push(`/users/${this.state.user.id}/trips`))
+            }, () => this.props.history.push(`/users/${this.state.user.id}/trips/${json.id}`))
         });
     }
 

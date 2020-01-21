@@ -89,8 +89,6 @@ class NavMenu extends Component {
           Login
         </Menu.Item>
         }
-        
-
       </Menu>
     )
   }
