@@ -5,9 +5,114 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #cdd3d6;
+  padding-top: 65px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+hr {
+  margin-top: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+  color: rgb(46, 64, 70);
+  border: solid 1px;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(46, 64, 70);
+}
+
+h2 {
+  color: rgb(46, 64, 70);
+}
+
+h3 {
+  text-align: center;
+  color: rgb(46, 64, 70);
+}
+
+p {
+  text-align: center;
+  padding-left: 3em;
+  padding-right: 3em;
+  font-size: 20px;
+  color: rgb(46, 64, 70);
+}
+
+#signUpForm {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+#signUpText {
+  padding-top: 2em;
+  font-size: 15px;
+}
+
+#loginForm {
+  padding: 1em;
+}
+
+.loadingIcons {
+  display: flex;
+}
+
+.tripLinks {
+  font-size: 20px;
+  display: flex;
+}
+
+#newTripForm {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.lists {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.addItemForms {
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 1em;
+}
+
+.listHeaders {
+  padding-left: 2em;
+}
+
+#tripDescription {
+  padding-bottom: 1em;
+}
+
+.itemIcons {
+  background-color: white;
+}
+
+#navBar {
+  background-color: #4183c4;
+  border-radius: 0px;
+  height: 60px;
+}
+
+#navBarHeader {
+  font-size: 30px;
+}
+
+label {
+  font-size: 18px;
 }

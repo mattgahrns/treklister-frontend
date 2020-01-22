@@ -49,6 +49,7 @@ class App extends React.Component {
   render(){
     return (
       this.state.user !== null ? 
+      <div className='main'>
       <Router>
         <NavMenu
         handleLogin={this.login}
@@ -60,10 +61,12 @@ class App extends React.Component {
         <Route exact path='/login' render={props => <LogIn {...props} onLogin={this.login} />}/>
         <Route exact path='/users/:id/new/trip' render={props => <NewTrip {...props} />}/>
         <Route exact path='/users/:id/trips' render={props => <MyTrips {...props} />}/>
-        <Route exact path='/users/:id/account' render={props => <Account {...props} />}/>
-        <Route exact path='/trip/:id' render={props => <Trip {...props} />}/>
+        <Route exact path='/users/:id/account' render={props => <Account {...props} onDelete={this.logout}/>}/>
+        <Route exact path='/users/:id/trips/:id' render={props => <Trip {...props} />}/>
       </Router>
+      </div>
       :
+      <div className='main'>
       <Router>
         <NavMenu
         handleLogin={this.login}
@@ -74,6 +77,7 @@ class App extends React.Component {
         <Route exact path='/signup' render={props => <SignUp {...props} onLogin={this.login} />}/>
         <Route exact path='/login' render={props => <LogIn {...props} onLogin={this.login} />}/>
       </Router>
+      </div>
     );
   }
 }

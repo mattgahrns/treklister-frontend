@@ -43,7 +43,7 @@ class NewTrip extends React.Component {
         .then(json => {
             this.setState({
                 trip: json
-            }, () => this.props.history.push(`/users/${this.state.user.id}/trips`))
+            }, () => this.props.history.push(`/users/${this.state.user.id}/trips/${json.id}`))
         });
     }
 
@@ -51,7 +51,7 @@ class NewTrip extends React.Component {
         return(
         <>
             <h1>New Trip</h1>
-            <Form onSubmit={this.handleSubmit}>
+            <Form id='newTripForm' onSubmit={this.handleSubmit}>
 
                 <Form.Input 
                     required
@@ -69,7 +69,7 @@ class NewTrip extends React.Component {
                     onChange={this.handleChange}
                 />
 
-                <Form.Button content='Submit' />
+                <Form.Button compact color='green' content='Create Trip' />
             
             </Form>
             

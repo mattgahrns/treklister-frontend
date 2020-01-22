@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../services/api';
 import { Link } from 'react-router-dom';
-import { Icon } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 class MyTrips extends React.Component {
 
@@ -40,7 +40,7 @@ class MyTrips extends React.Component {
 
     renderTrips = () => {
         return this.state.trips.map(trip => {
-            return <div key={trip.id}><Link to={`/trip/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
+            return <div key={trip.id}><Link className='tripLinks' to={`/users/${this.state.user.id}/trips/${trip.id}`} key={trip.id}>{trip.name}</Link><br/><br/></div>
         });
     }
 
@@ -48,13 +48,16 @@ class MyTrips extends React.Component {
         return(
             <>
                 <h1>Your Trips</h1>
+                <br/>
                 {this.state.trips !== null ? 
                     this.renderTrips().length === 0 ? 
                     <p>You don't have any trips yet!</p>
                     :
-                    this.renderTrips()
+                    <div className='flex-container'>
+                    {this.renderTrips()}
+                    </div>
                 :
-                    <Icon loading name='spinner' size='massive'/>
+                    <Loader active inline='centered' size='massive'>Loading...</Loader>
                 }
             </>
         )

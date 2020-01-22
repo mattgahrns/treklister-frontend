@@ -34,7 +34,7 @@ class ListItemEditForm extends React.Component{
                     name='content'
                     onChange={this.handleChange}
                 />
-                <Form.Button content='Submit' />
+                <Form.Button compact color='green' content='Confirm' />
             
             </Form>
         )

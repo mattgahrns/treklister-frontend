@@ -49,9 +49,9 @@ class SignUp extends React.Component {
         <>
             <h1>Treklister Sign Up</h1>
 
-            <Form onSubmit={this.handleSubmit}>
+            <Form id='signUpForm' onSubmit={this.handleSubmit}>
 
-                <Form.Group unstackable widths='1'>
+                <Form.Group unstackable widths='2'>
                     <Form.Input 
                         required
                         label='Username'
@@ -59,6 +59,7 @@ class SignUp extends React.Component {
                         name='username'
                         onChange={this.handleChange}
                     />
+                    <p id='signUpText'>Your username and password will be used for logging in.</p>
                 </Form.Group>
 
                 <Form.Group unstackable widths='2'>
@@ -97,7 +98,7 @@ class SignUp extends React.Component {
                     />
                 </Form.Group>
 
-                <Form.Button content='Submit' />
+                <Form.Button id='signUpSubmit' color='green' compact content='Create Account' />
                 
             </Form>
         </>

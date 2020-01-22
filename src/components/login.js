@@ -37,9 +37,9 @@ class LogIn extends React.Component {
         return(
         <>
             <h1>Treklister Login</h1>
-            <Form onSubmit={this.handleSubmit}>
+            <Form id='loginForm' onSubmit={this.handleSubmit}>
 
-                <Form.Group unstackable widths='1'>
+                <Form.Group unstackable className='ui one column center aligned page grid' widths='1'>
                     <Form.Input
                         required
                         label='Username'
@@ -49,7 +49,7 @@ class LogIn extends React.Component {
                     />
                 </Form.Group>
 
-                <Form.Group unstackable widths='1'>
+                <Form.Group unstackable className='ui one column center aligned page grid' widths='1'>
                     <Form.Input
                         required
                         type='password'
@@ -60,7 +60,7 @@ class LogIn extends React.Component {
                     />
                 </Form.Group>
 
-                <Form.Button content='Submit' />
+                <Form.Button className='ui one column center aligned page grid' compact color='green' content='Login' />
             
             </Form>
         </>
