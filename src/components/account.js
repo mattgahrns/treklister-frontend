@@ -118,7 +118,7 @@ class Account extends React.Component {
                 </Grid>
             </>
             :
-                <Loader active inline='centered' size='massive'>Loading...</Loader>
+                <Loader className='loadingIcons' active inline='centered' size='massive'>Loading...</Loader>
             }
             
         </>

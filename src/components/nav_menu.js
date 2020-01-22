@@ -11,7 +11,7 @@ class NavMenu extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu id='navBar' size='massive'>
+      <Menu id='navBar' size='massive' className='ui fixed menu'>
 
         <Menu.Item header id='navBarHeader'>Treklister</Menu.Item>
 
