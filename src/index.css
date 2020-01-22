@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: wheat;
 }
 
 code {
@@ -23,6 +24,7 @@ hr {
   margin-top: 1em;
   margin-left: 3em;
   margin-right: 3em;
+  color: black;
 }
 
 h1 {
@@ -53,7 +55,7 @@ p {
   padding: 1em;
 }
 
-.loadingIcon {
+.loadingIcons {
   display: flex;
 }
 
@@ -84,4 +86,8 @@ p {
 
 #tripDescription {
   padding-bottom: 1em;
+}
+
+.itemIcons {
+  background-color: white;
 }

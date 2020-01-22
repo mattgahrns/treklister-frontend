@@ -73,7 +73,7 @@ class Account extends React.Component {
                 <Grid>
                 <Grid.Column textAlign='center'>
                 <Modal 
-                trigger={<Button onClick={this.handleEditOpen} color='yellow' id={this.state.user.id} className='accountButtons' compact>Edit Account</Button>}
+                trigger={<Button onClick={this.handleEditOpen} color='olive' id={this.state.user.id} className='accountButtons' compact>Edit Account</Button>}
                 open={this.state.editModalOpen}
                 onClose={this.handleEditClose}
                 >
@@ -83,7 +83,7 @@ class Account extends React.Component {
                     </Modal.Content>
                 </Modal>
                 <Modal 
-                trigger={<Button onClick={this.handlePasswordOpen} color='yellow' id={this.state.user.id} className='accountButtons' compact>Change Password</Button>}
+                trigger={<Button onClick={this.handlePasswordOpen} color='olive' id={this.state.user.id} className='accountButtons' compact>Change Password</Button>}
                 open={this.state.passwordModalOpen}
                 onClose={this.handlePasswordClose}
                 >

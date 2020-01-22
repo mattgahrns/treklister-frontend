@@ -109,7 +109,7 @@ class Trip extends React.Component {
                         <label className='listItems' style={{backgroundColor: '#96FF72', cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} id={item.id} />{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
-                            <Icon link bordered name='edit' onClick={() => {
+                            <Icon className='itemIcons' link bordered name='edit' onClick={() => {
                                 this.setState({ 
                                     size: 'fullscreen', 
                                     open: true,
@@ -119,7 +119,7 @@ class Trip extends React.Component {
                         } />
                         &nbsp;
                         <Popup content='Delete item' style={popupStyle} trigger={
-                            <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
+                            <Icon className='itemIcons' link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
                         } />
                     </li>
                     <br/>
@@ -131,7 +131,7 @@ class Trip extends React.Component {
                     <label className='listItems' style={{cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" onClick={(e) => this.handleCheck(e)} id={item.id}/>{item.content}</label>
                     &nbsp;&nbsp; 
                     <Popup content='Edit item' style={popupStyle} trigger={
-                        <Icon link bordered name='edit' onClick={() => {
+                        <Icon className='itemIcons' link bordered name='edit' onClick={() => {
                             this.setState({ 
                                 size: 'fullscreen', 
                                 open: true,
@@ -140,8 +140,8 @@ class Trip extends React.Component {
                         }} />
                     } />
                     &nbsp;
-                    <Popup content='Delete item' style={popupStyle} trigger={
-                        <Icon link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
+                    <Popup className='itemIcons' content='Delete item' style={popupStyle} trigger={
+                        <Icon className='itemIcons' link bordered name='trash alternate' onClick={() => this.handleItemDelete(item.id)} />
                     } />
                 </li>
                 <br/>
@@ -254,7 +254,7 @@ class Trip extends React.Component {
                     <Grid>
                     <Grid.Column textAlign='center'>
                     <Modal 
-                    trigger={<Button onClick={this.handleEditOpen} id={this.state.user.id} compact color='yellow' className='tripButtons'>Edit Trip</Button>}
+                    trigger={<Button onClick={this.handleEditOpen} id={this.state.user.id} compact color='olive' className='tripButtons'>Edit Trip</Button>}
                     open={this.state.editModalOpen}
                     onClose={this.handleEditClose}
                     >
@@ -287,7 +287,7 @@ class Trip extends React.Component {
                     </Modal>
                     </Grid.Column>
                     </Grid>
-                    <hr/>
+                    <br/>
                     <h2 className='listHeaders'>Before leaving to my destination: &nbsp;&nbsp; {this.state.beforeList !== null ? <Button style={{marginRight: '3em'}} id={this.state.beforeList[0].id} className='ui right floated' color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
                     {this.state.beforeItems !== null ?
                         this.state.beforeItems.length > 0 ?
@@ -308,7 +308,7 @@ class Trip extends React.Component {
                             value={this.state.beforeFields.content}
                             onChange={this.handleBeforeChange}
                         />
-                        <Form.Button color='green' content='Add item' />
+                        <Form.Button color='green' compact content='Add item' />
                     </Form>
 
                     <h2 className='listHeaders'>Before leaving to go home: &nbsp;&nbsp; {this.state.afterList !== null ? <Button style={{marginRight: '3em'}} id={this.state.afterList[0].id} className='ui right floated' color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
@@ -331,11 +331,11 @@ class Trip extends React.Component {
                             value={this.state.afterFields.content}
                             onChange={this.handleAfterChange}
                         />
-                        <Form.Button color='green' content='Add item' />
+                        <Form.Button color='green' compact content='Add item' />
                     </Form>
                 </>
             :
-                <Icon loading name='spinner' size='massive'/>
+                <Icon loading name='spinner' size='massive' className='loadingIcons' />
             }
             
             <Modal size={size} open={open} onClose={this.close}>
