@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: wheat;
+  background-color: #ebf2f7;
 }
 
 code {
@@ -90,4 +90,14 @@ p {
 
 .itemIcons {
   background-color: white;
+}
+
+#navBar {
+  background-color: #d0d7db;
+  border-radius: 0px;
+  height: 60px;
+}
+
+#navBarHeader {
+  font-size: 30px;
 }
