@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api'
-import { Form, Icon, Popup, Modal, Button, Grid } from 'semantic-ui-react';
+import { Form, Icon, Popup, Modal, Button, Grid, Loader } from 'semantic-ui-react';
 import ListItemEditForm from './list_item_edit_form';
 import TripEditForm from './trip_edit_form';
 
@@ -297,7 +297,7 @@ class Trip extends React.Component {
                         :
                         <p>No items yet, add some below!</p>
                     :    
-                        <Icon loading name='spinner' size='huge'/>
+                        <Loader active inline='centered' size='huge'>Loading...</Loader>
                     }
                     <br/>
                     <Form className='addItemForms' onSubmit={this.handleBeforeSubmit}>
@@ -320,7 +320,7 @@ class Trip extends React.Component {
                         :
                         <p>No items yet, add some below!</p>
                     :    
-                        <Icon loading name='spinner' size='huge'/>
+                        <Loader active inline='centered' size='huge'>Loading...</Loader>
                     }
                     <br/>
                     <Form className='addItemForms' onSubmit={this.handleAfterSubmit}>
@@ -335,7 +335,7 @@ class Trip extends React.Component {
                     </Form>
                 </>
             :
-                <Icon loading name='spinner' size='massive' className='loadingIcons' />
+                <Loader active inline='centered' size='massive'>Loading...</Loader>
             }
             
             <Modal size={size} open={open} onClose={this.close}>

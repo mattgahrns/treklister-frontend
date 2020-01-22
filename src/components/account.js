@@ -1,6 +1,6 @@
 import React from 'react';
 import { api } from '../services/api';
-import { Icon, Button, Modal, Grid } from 'semantic-ui-react';
+import { Button, Modal, Grid, Loader } from 'semantic-ui-react';
 import AccountEditForm from './account_edit_form';
 import ChangePasswordForm from './change_password_form'
 
@@ -118,7 +118,7 @@ class Account extends React.Component {
                 </Grid>
             </>
             :
-                <Icon className='loadingIcon' loading name='spinner' size='massive'/>
+                <Loader active inline='centered' size='massive'>Loading...</Loader>
             }
             
         </>
