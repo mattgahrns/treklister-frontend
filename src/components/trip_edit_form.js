@@ -52,7 +52,7 @@ class TripEditForm extends React.Component{
                     defaultValue={this.props.currTrip.description}
                 />
 
-                <Form.Button content='Submit' />
+                <Form.Button compact color='green' content='Confirm' />
 
             </Form>
         </>
