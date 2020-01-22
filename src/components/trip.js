@@ -58,10 +58,16 @@ class Trip extends React.Component {
 
     handleEditOpen = () => this.setState({ editModalOpen: true })
 
-    handleEditClose = (trip) => {
+    handleEditSubmit = (trip) => {
         this.setState({ 
             editModalOpen: false,
             trip: trip
+        });
+    }
+
+    handleEditClose = () => {
+        this.setState({ 
+            editModalOpen: false,
         });
     }
     
@@ -260,7 +266,7 @@ class Trip extends React.Component {
                     >
                         <Modal.Header>Edit Trip</Modal.Header>
                         <Modal.Content>
-                            <TripEditForm handleClose={this.handleEditClose} currTrip={this.state.trip}/>
+                            <TripEditForm handleClose={this.handleEditSubmit} currTrip={this.state.trip}/>
                         </Modal.Content>
                     </Modal>
                     <Modal 

@@ -64,7 +64,7 @@ class AccountEditForm extends React.Component{
                     />
                 </Form.Group>
 
-                <Form.Button color='green' content='Submit' />
+                <Form.Button color='green' compact content='Submit' />
                 
             </Form>
         </>
