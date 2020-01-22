@@ -26,7 +26,8 @@ hr {
   margin-top: 1em;
   margin-left: 3em;
   margin-right: 3em;
-  color: black;
+  color: rgb(46, 64, 70);
+  border: solid 1px;
 }
 
 h1 {

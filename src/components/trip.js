@@ -287,7 +287,7 @@ class Trip extends React.Component {
                     </Modal>
                     </Grid.Column>
                     </Grid>
-                    <br/>
+                    <hr/>
                     <h2 className='listHeaders'>Before leaving to my destination: &nbsp;&nbsp; {this.state.beforeList !== null ? <Button style={{marginRight: '3em'}} id={this.state.beforeList[0].id} className='ui right floated' color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
                     {this.state.beforeItems !== null ?
                         this.state.beforeItems.length > 0 ?
@@ -310,7 +310,7 @@ class Trip extends React.Component {
                         />
                         <Form.Button color='green' compact content='Add item' />
                     </Form>
-
+                    <hr/>
                     <h2 className='listHeaders'>Before leaving to go home: &nbsp;&nbsp; {this.state.afterList !== null ? <Button style={{marginRight: '3em'}} id={this.state.afterList[0].id} className='ui right floated' color='red' compact onClick={(e) => this.handleClearChecks(e)}>Clear All Checks</Button> : null}</h2>
                     {this.state.afterItems !== null ?
                         this.state.afterItems.length > 0 ?
