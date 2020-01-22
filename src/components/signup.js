@@ -59,7 +59,7 @@ class SignUp extends React.Component {
                         name='username'
                         onChange={this.handleChange}
                     />
-                    <p id='signUpText'>Your username must be unique as you will use it to login.</p>
+                    <p id='signUpText'>Your username and password will be used for logging in.</p>
                 </Form.Group>
 
                 <Form.Group unstackable widths='2'>
