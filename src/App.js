@@ -61,7 +61,7 @@ class App extends React.Component {
         <Route exact path='/login' render={props => <LogIn {...props} onLogin={this.login} />}/>
         <Route exact path='/users/:id/new/trip' render={props => <NewTrip {...props} />}/>
         <Route exact path='/users/:id/trips' render={props => <MyTrips {...props} />}/>
-        <Route exact path='/users/:id/account' render={props => <Account {...props} />}/>
+        <Route exact path='/users/:id/account' render={props => <Account {...props} onDelete={this.logout}/>}/>
         <Route exact path='/users/:id/trips/:id' render={props => <Trip {...props} />}/>
       </Router>
       </div>

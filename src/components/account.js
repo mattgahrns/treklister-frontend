@@ -57,6 +57,7 @@ class Account extends React.Component {
         .then(res => res.json())
         .then(json => {
             alert(json.message);
+            this.props.onDelete();
             this.props.history.push('/signup');
         });
     }
