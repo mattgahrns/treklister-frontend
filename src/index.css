@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ebf2f7;
+  /* background-color: rgb(233, 213, 177); */
+  background-color: #cdd3d6;
   padding-top: 65px;
 }
 
@@ -31,10 +32,12 @@ hr {
 
 h1 {
   text-align: center;
+  color: rgb(46, 64, 70);
 }
 
 h3 {
   text-align: center;
+  color: rgb(46, 64, 70);
 }
 
 p {
@@ -42,6 +45,7 @@ p {
   padding-left: 3em;
   padding-right: 3em;
   font-size: 20px;
+  color: rgb(46, 64, 70);
 }
 
 #signUpForm {
@@ -96,7 +100,7 @@ p {
 }
 
 #navBar {
-  background-color: #d0d7db;
+  background-color: #4183c4;
   border-radius: 0px;
   height: 60px;
 }
