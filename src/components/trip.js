@@ -96,11 +96,7 @@ class Trip extends React.Component {
         } else {
             item.style.backgroundColor = '#96FF72';
         }
-        api.requests.checkListItem(e.target.id)
-        .then(res => res.json())
-        .then(json => {
-            console.log(json)
-        })
+        api.requests.checkListItem(e.target.id);
     }
 
     renderList = (list) => {
@@ -213,24 +209,23 @@ class Trip extends React.Component {
                 }, () => {
                     this.state.beforeItems.forEach(item => {
                         let element = document.getElementById(`label${item.id}`);
-                        // console.log(element.style.backgroundColor)
                         if(element.style.backgroundColor === 'rgb(150, 255, 114)'){
                             element.firstChild.checked = false;
                             element.style.backgroundColor = '#cdd3d6';
                         }
                     });
-                    this.renderList(this.state.beforeItems);
-                    console.log('first')
                 });
-                this.renderList(this.state.beforeItems);
-                console.log('hieelaiejaejfij')
             } else {
                 this.setState({
                     afterItems: json.list_items
                 }, () => {
-                    for(let i = 0; i < this.state.afterItems; i++){
-                        document.querySelector(`.${this.state.afterItems[i].id}`).click();
-                    }
+                    this.state.afterItems.forEach(item => {
+                        let element = document.getElementById(`label${item.id}`);
+                        if(element.style.backgroundColor === 'rgb(150, 255, 114)'){
+                            element.firstChild.checked = false;
+                            element.style.backgroundColor = '#cdd3d6';
+                        }
+                    });
                 });
             }
         })
