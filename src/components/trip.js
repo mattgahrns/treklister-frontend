@@ -211,12 +211,19 @@ class Trip extends React.Component {
                 this.setState({
                     beforeItems: json.list_items
                 }, () => {
-                    for(let i = 0; i < this.state.beforeItems; i++){
-                        console.log('asaaaaa')
-                        document.querySelector(`.${this.state.beforeItems[i].id}`).click();
-                        console.log('heaiefjaij')
-                    }
+                    this.state.beforeItems.forEach(item => {
+                        let element = document.getElementById(`label${item.id}`);
+                        // console.log(element.style.backgroundColor)
+                        if(element.style.backgroundColor === 'rgb(150, 255, 114)'){
+                            element.firstChild.checked = false;
+                            element.style.backgroundColor = '#cdd3d6';
+                        }
+                    });
+                    this.renderList(this.state.beforeItems);
+                    console.log('first')
                 });
+                this.renderList(this.state.beforeItems);
+                console.log('hieelaiejaejfij')
             } else {
                 this.setState({
                     afterItems: json.list_items
