@@ -200,6 +200,8 @@ class Trip extends React.Component {
     }
 
     handleClearChecks = (e) => {
+        const clearAllButton = e.target;
+        clearAllButton.innerText = 'Clearing...';
         api.requests.uncheckAllItems(e.target.id)
         .then(res => res.json())
         .then(json => {
@@ -214,6 +216,7 @@ class Trip extends React.Component {
                             element.style.backgroundColor = '#cdd3d6';
                         }
                     });
+                    clearAllButton.innerText = 'Clear All Checks';
                 });
             } else {
                 this.setState({
@@ -226,9 +229,11 @@ class Trip extends React.Component {
                             element.style.backgroundColor = '#cdd3d6';
                         }
                     });
+                    clearAllButton.innerText = 'Clear All Checks';
                 });
             }
-        })
+        });
+        
     }
 
     state = { open: false }
