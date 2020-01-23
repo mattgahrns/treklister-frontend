@@ -90,20 +90,13 @@ class Trip extends React.Component {
 
     handleCheck = (e) => {
         e.persist();
-        api.requests.checkListItem(e.target.id)
-        .then(res => res.json())
-        .then(json => {
-            if(json.isChecked){
-                this.setState({bgColor: '#96FF72'})
-                e.target.style.backgroundColor = this.state.bgColor;
-                this.setState({bgColor: ''})
-            }else{
-                this.setState({bgColor: ''})
-                e.target.style.backgroundColor = this.state.bgColor;
-                this.setState({bgColor: '#96FF72'})
-            }
-            this.getLists();
-        })
+        const item = document.getElementById(`label${e.target.id}`);
+        if(item.style.backgroundColor === 'rgb(150, 255, 114)'){
+            item.style.backgroundColor = '#cdd3d6';
+        } else {
+            item.style.backgroundColor = '#96FF72';
+        }
+        api.requests.checkListItem(e.target.id);
     }
 
     renderList = (list) => {
@@ -112,7 +105,7 @@ class Trip extends React.Component {
                 item.isChecked === true ? 
                     <div key={item.id} id={item.id}>
                     <li>
-                        <label className='listItems' style={{backgroundColor: '#96FF72', cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} id={item.id} />{item.content}</label>
+                        <label id={`label${item.id}`} className='listItems' style={{backgroundColor: '#96FF72', cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" defaultChecked onClick={(e) => this.handleCheck(e)} id={item.id} />{item.content}</label>
                         &nbsp;&nbsp; 
                         <Popup content='Edit item' style={popupStyle} trigger={
                             <Icon className='itemIcons' link bordered name='edit' onClick={() => {
@@ -134,7 +127,7 @@ class Trip extends React.Component {
                 <div key={item.id} id={item.id}>
                     {undefined}
                 <li>
-                    <label className='listItems' style={{cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" onClick={(e) => this.handleCheck(e)} id={item.id}/>{item.content}</label>
+                    <label id={`label${item.id}`} className='listItems' style={{backgroundColor: '#cdd3d6', cursor: 'pointer'}}><input style={{cursor: 'pointer'}} type="checkbox" onClick={(e) => this.handleCheck(e)} id={item.id}/>{item.content}</label>
                     &nbsp;&nbsp; 
                     <Popup content='Edit item' style={popupStyle} trigger={
                         <Icon className='itemIcons' link bordered name='edit' onClick={() => {
@@ -207,6 +200,8 @@ class Trip extends React.Component {
     }
 
     handleClearChecks = (e) => {
+        const clearAllButton = e.target;
+        clearAllButton.innerText = 'Clearing...';
         api.requests.uncheckAllItems(e.target.id)
         .then(res => res.json())
         .then(json => {
@@ -214,20 +209,31 @@ class Trip extends React.Component {
                 this.setState({
                     beforeItems: json.list_items
                 }, () => {
-                    for(let i = 0; i < this.state.beforeItems; i++){
-                        document.querySelector(`.${this.state.beforeItems[i].id}`).click();
-                    }
+                    this.state.beforeItems.forEach(item => {
+                        let element = document.getElementById(`label${item.id}`);
+                        if(element.style.backgroundColor === 'rgb(150, 255, 114)'){
+                            element.firstChild.checked = false;
+                            element.style.backgroundColor = '#cdd3d6';
+                        }
+                    });
+                    clearAllButton.innerText = 'Clear All Checks';
                 });
             } else {
                 this.setState({
                     afterItems: json.list_items
                 }, () => {
-                    for(let i = 0; i < this.state.afterItems; i++){
-                        document.querySelector(`.${this.state.afterItems[i].id}`).click();
-                    }
+                    this.state.afterItems.forEach(item => {
+                        let element = document.getElementById(`label${item.id}`);
+                        if(element.style.backgroundColor === 'rgb(150, 255, 114)'){
+                            element.firstChild.checked = false;
+                            element.style.backgroundColor = '#cdd3d6';
+                        }
+                    });
+                    clearAllButton.innerText = 'Clear All Checks';
                 });
             }
-        })
+        });
+        
     }
 
     state = { open: false }
