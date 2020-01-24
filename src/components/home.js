@@ -12,7 +12,7 @@ const Home = () => {
         src="https://www.youtube.com/embed/R-ekRgefOZI" 
         frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
+        allowfullscreen='true'
         align='middle'>
         </iframe>
         </div>
