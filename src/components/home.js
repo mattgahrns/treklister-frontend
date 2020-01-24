@@ -7,6 +7,7 @@ const Home = () => {
         <h1>Treklister Home</h1>
         <div id='iframeContainer'>
         <iframe 
+        title='Treklister Demo'
         width="1000" 
         height="600" 
         src="https://www.youtube.com/embed/R-ekRgefOZI" 
